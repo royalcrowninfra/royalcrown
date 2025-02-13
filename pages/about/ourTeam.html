@@ -13,20 +13,45 @@
     body {
       font-family: 'Poppins', 'Inter', sans-serif;
     }
+
+    .icon-box {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .icon-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-box svg {
+      transition: transform 0.3s ease;
+    }
+
+    .icon-box:hover svg {
+      transform: scale(1.1);
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
 <body class="bg-gradient-to-b from-gray-100 to-white min-h-screen">
-
   <!-- Navbar Container -->
   <div id="navbar-container"></div>
-
 
   <section class="container mx-auto px-4 py-20 md:py-32">
     <div class="flex flex-col md:flex-row items-center">
       <div class="md:w-1/2 mb-12 md:mb-0 fade-in-up">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-800">Turn Your Ideas Into Live Web Experiences
-        </h1>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-800">Turn Your Ideas Into Live Web Experiences</h1>
         <p class="text-xl text-gray-600 mb-8">We bring your visions to life with cutting-edge web development
           and design solutions.</p>
         <a href="/contact"
@@ -39,6 +64,7 @@
       </div>
     </div>
   </section>
+
   <section class="bg-white py-20">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row">
@@ -53,8 +79,14 @@
         </div>
         <div class="md:w-1/2 space-y-10">
           <div class="flex items-start fade-in-up">
-            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
-              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            <div class="icon-box bg-purple-600 p-4 rounded-lg mr-6">
+              <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+              </svg>
             </div>
             <div>
               <h3 class="text-2xl font-semibold mb-3 text-gray-800">RESEARCH</h3>
@@ -63,8 +95,13 @@
             </div>
           </div>
           <div class="flex items-start fade-in-up">
-            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
-              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            <div class="icon-box bg-purple-600 p-4 rounded-lg mr-6">
+              <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20h20" />
+                <path d="M5 16l3-8 3 8 3-8 3 8" />
+                <circle cx="12" cy="4" r="2" />
+              </svg>
             </div>
             <div>
               <h3 class="text-2xl font-semibold mb-3 text-gray-800">STRATEGY</h3>
@@ -73,8 +110,14 @@
             </div>
           </div>
           <div class="flex items-start fade-in-up">
-            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
-              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            <div class="icon-box bg-purple-600 p-4 rounded-lg mr-6">
+              <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                <path d="M2 2l7.586 7.586" />
+                <circle cx="11" cy="11" r="2" />
+              </svg>
             </div>
             <div>
               <h3 class="text-2xl font-semibold mb-3 text-gray-800">DESIGN</h3>
@@ -82,11 +125,11 @@
                 captivate your audience and enhance their digital experience.</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </section>
+
   <section class="bg-gray-100 py-20">
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 fade-in-up">Meet Our Team</h2>
@@ -113,16 +156,12 @@
     </div>
   </section>
 
-
-  <!-- Footer Container -->>
+  <!-- Footer Container -->
   <div id="footer-container"></div>
-
-
-
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Fade in animation
       const elements = document.querySelectorAll(".fade-in-up");
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -132,30 +171,21 @@
         });
       }, { threshold: 0.1 });
       elements.forEach(el => observer.observe(el));
+
+      // Load components
+      loadComponent('navbar-container', '/components/navbar.html');
+      loadComponent('footer-container', '/components/footer.html');
     });
 
-
-
-    // Content data
     function loadComponent(elementId, path) {
-      fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+      fetch(path)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById(elementId).innerHTML = data;
+        })
         .catch(error => console.error('Error loading component:', error));
     }
-    document.addEventListener('DOMContentLoaded', function () {
-      loadComponent('navbar-container', '/components/navbar.html');
-    });
-
-
-
-    //////  Footer component
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
-        .catch(error => console.error("Error loading footer:", error));
-    });
   </script>
-
-
-
 </body>
 
 </html>

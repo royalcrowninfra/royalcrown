@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+    </style>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+
+
+<body class="bg-gray-100">
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+
+
+    <div class="bg-cover bg-center h-72 flex items-center justify-center"
+        style="background-image: url('/assets/images/ongoing.jpg');">
+        <h1 class="text-white text-4xl font-bold">Ongoing Projects</h1>
+    </div>
+
+    <div class="container mx-auto py-10 px-4 md:py-32">
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="/assets/images/projects/ongoing/saiprasad/img-5.jpeg" alt="Project 1"
+                    class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800">SAI PRASAD GARDEN, Nevali, Panvel</h2>
+                    <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                        <li>&bull; 1 & 2 BHK Apartments</li>
+                        <li>&bull; 13 Buildings, G+4 Storey</li>
+                        <li>&bull; Ready to Move In</li>
+                        <li>&bull; Luxurious Amenities</li>
+                    </ul>
+                    <a href="./saiPrasadGarden.html"><button
+                            class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors">Read
+                            More</button></a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="/assets/images/projects/ongoing/jayram/img-1.jpg" alt="Project 2"
+                    class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800">JAYRAM RESIDENCY, Shedung, Panvel</h2>
+                    <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                        <li>&bull; 1 & 2 BHK Apartments</li>
+                        <li>&bull; 4 Buildings, 10 Wings, G+7 Storey</li>
+                        <li>&bull; Possession: March 2026</li>
+                        <li>&bull; Luxurious Amenities</li>
+                    </ul>
+                    <a href="./jayramresidency.html"><button
+                            class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors">Read
+                            More</button></a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="/assets/images/projects/ongoing/newcityPalace/nightRender1.jpg" alt="Project 3"
+                    class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800">NEW CITY PALACE, Pushpak Nagar, Panvel</h2>
+                    <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                        <li>&bull; 1RK, 1BHK Apartments</li>
+                        <li>&bull; G+7 Storey</li>
+                        <li>&bull; Possession: Dec 2025</li>
+                        <li>&bull; Rooftop Amenities</li>
+                    </ul>
+                    <a href="./newcitypalace.html"><button
+                            class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg text-sm font-medium hover:bg-red-600 transition-colors">Read
+                            More</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer Container -->>
+    <div id="footer-container"></div>
+
+    <script>
+
+        // Navbar
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+
+        //////  Footer component
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+    </script>
+
+</body>
+
+</html>

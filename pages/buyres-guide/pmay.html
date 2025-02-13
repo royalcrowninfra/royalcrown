@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<style>
+       body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+    }
+
+</style>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PMAY Dashboard</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            .accordion-content {
+                display: none;
+            }
+
+            .accordion-trigger[aria-expanded="true"]+.accordion-content {
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-100 min-h-screen">
+        <!-- Navbar Container -->
+        <div id="navbar-container"></div>
+
+        <!-- PMAY Overview Card -->
+        <div class="mb-8 bg-white shadow rounded-lg">
+            <div class="p-4 border-b">
+                <h1 class="text-3xl font-bold text-center text-blue-600">Pradhan Mantri Awas Yojana (PMAY)</h1>
+            </div>
+            <div class="p-4">
+                <p class="text-lg text-center mb-4">
+                    "Sabka Saat, Sabke Vikas" - Making affordable housing a reality
+                </p>
+                <p class="text-gray-700">
+                    The Pradhan Mantri Awas Yojana is a government initiative aimed at providing central assistance to
+                    Urban Local Bodies for the rehabilitation of existing slum dwellers using land as a resource through
+                    private participation. The PMAY plan is to deliver 2 crore permanent houses by 2022 in urban as well
+                    as rural zones.
+                </p>
+            </div>
+        </div>
+
+        <!-- PMAY Scheme Details -->
+        <div class="mb-8 bg-white shadow rounded-lg">
+            <div class="p-4 border-b">
+                <h2 class="text-2xl font-semibold">The Scheme</h2>
+            </div>
+            <div class="p-4">
+                <p class="mb-4">
+                    The Pradhan Mantri Awas Yojana enables housing loan seekers to receive subsidies of up to Rs 2.67
+                    lakhs on their loan amount. Here's explaining the PMAY's credit linked subsidy scheme in detail for
+                    your easy reference.
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="border border-gray-300 px-4 py-2">Category Type</th>
+                                <th class="border border-gray-300 px-4 py-2">Household Income</th>
+                                <th class="border border-gray-300 px-4 py-2">Carpet Area</th>
+                                <th class="border border-gray-300 px-4 py-2">Interest Subsidy</th>
+                                <th class="border border-gray-300 px-4 py-2">Subsidy on max loan of</th>
+                                <th class="border border-gray-300 px-4 py-2">Loan Reason</th>
+                                <th class="border border-gray-300 px-4 py-2">Max Subsidy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-2">EWS/LIG</td>
+                                <td class="border border-gray-300 px-4 py-2">Upto 6,00,000 p.a.</td>
+                                <td class="border border-gray-300 px-4 py-2">60 sqm</td>
+                                <td class="border border-gray-300 px-4 py-2">6.50%</td>
+                                <td class="border border-gray-300 px-4 py-2">Rs 6,00,000</td>
+                                <td class="border border-gray-300 px-4 py-2">Purchase Const/Ext.</td>
+                                <td class="border border-gray-300 px-4 py-2 font-semibold">Rs 2.67 Lakhs</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-2">MIG 1</td>
+                                <td class="border border-gray-300 px-4 py-2">Rs 6,00,001 to Rs 12,00,000</td>
+                                <td class="border border-gray-300 px-4 py-2">120 sqm</td>
+                                <td class="border border-gray-300 px-4 py-2">4.00%</td>
+                                <td class="border border-gray-300 px-4 py-2">Rs 9,00,000</td>
+                                <td class="border border-gray-300 px-4 py-2">Purchase/ Construction</td>
+                                <td class="border border-gray-300 px-4 py-2 font-semibold">Rs 2.35 Lakhs</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 px-4 py-2">MIG 2</td>
+                                <td class="border border-gray-300 px-4 py-2">Rs 12,00,001 to 18,00,000</td>
+                                <td class="border border-gray-300 px-4 py-2">150 sqm</td>
+                                <td class="border border-gray-300 px-4 py-2">3.00%</td>
+                                <td class="border border-gray-300 px-4 py-2">Rs 12,00,000</td>
+                                <td class="border border-gray-300 px-4 py-2">Purchase/ Construction</td>
+                                <td class="border border-gray-300 px-4 py-2 font-semibold">Rs 2.30 Lakhs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">
+                    The beneficiary family will comprise a husband, wife and unmarried children. Married children will
+                    be treated as separate family.
+                </p>
+            </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="bg-white shadow rounded-lg">
+            <div class="p-4 border-b">
+                <h2 class="text-2xl font-semibold">PMAY Scheme Specifics</h2>
+            </div>
+            <div class="p-4">
+                <div class="accordion">
+                    <button class="accordion-trigger font-semibold text-blue-600 mb-2" aria-expanded="false">
+                        Specific 1
+                    </button>
+                    <div class="accordion-content mb-4 text-gray-700">
+                        Aadhar number(s) of the beneficiary family are mandatory for MIG category.
+                    </div>
+                    <button class="accordion-trigger font-semibold text-blue-600 mb-2" aria-expanded="false">
+                        Specific 2
+                    </button>
+                    <div class="accordion-content mb-4 text-gray-700">
+                        The interest subsidy will be available for a maximum 20 year loan tenure or the loan tenure
+                        whichever is lower.
+                    </div>
+                    <!-- Add more accordion items as needed -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Container -->>
+        <div id="footer-container"></div>
+
+        <script>
+            document.querySelectorAll('.accordion-trigger').forEach((trigger) => {
+                trigger.addEventListener('click', () => {
+                    const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+                    trigger.setAttribute('aria-expanded', !isExpanded);
+                });
+            });
+
+            // Content data
+            function loadComponent(elementId, path) {
+                fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                    .catch(error => console.error('Error loading component:', error));
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                loadComponent('navbar-container', '/components/navbar.html');
+            });
+
+
+
+            //////  Footer component
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                    .catch(error => console.error("Error loading footer:", error));
+            });
+        </script>
+    </body>
+
+    </html>
+
+
+</body>
+
+</html>

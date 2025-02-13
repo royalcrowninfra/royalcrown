@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Crown Infra</title>
+  <script defer src="script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .line-clamp-3 {
+      display: -webkit-box;
+      /* -webkit-line-clamp: 3; */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-100% - var(--gap)));
+      }
+    }
+
+    .marquee-container {
+      --gap: 1rem;
+      --duration: 30s;
+      display: flex;
+      overflow: hidden;
+      gap: var(--gap);
+      padding: 0.5rem;
+    }
+
+    .marquee-content {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      gap: var(--gap);
+      animation: marquee var(--duration) linear infinite;
+    }
+
+    .marquee-content:hover {
+      animation-play-state: paused;
+    }
+
+    .fade-edge-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 16.666667%;
+      background: linear-gradient(to right, white 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .fade-edge-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 16.666667%;
+      background: linear-gradient(to left, white 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+
+    .card {
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+
+    .card.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+
+    .slide {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 10;
+    }
+
+    .stats-container {
+      background: linear-gradient(to right, #22d3ee, #0e7490);
+    }
+  </style>
+
+
+
+
+
+
+  <!-- Component Loader Script -->
+  <script>
+    /////// Navabar component
+    function loadComponent(elementId, path) {
+      fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+        .catch(error => console.error('Error loading component:', error));
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      loadComponent('navbar-container', '/components/navbar.html');
+    });
+
+    ////// Hero section Image slider
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/components/herosection.html").then(response => response.text()).then(data => {
+        document.getElementById("hero-section-container").innerHTML = data;
+      })
+        .catch(error => console.error("Error loading hero section:", error));
+    });
+
+    ////// about us component
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("components/about.html").then(response => response.text()).then(data => {
+        document.getElementById("about-us-container").innerHTML = data;
+      })
+        .catch(error => console.error("Error loading About section:", error));
+    });
+
+
+    ///////  reviews component
+    const posts = [
+      {
+        id: 1,
+        dateTime: '2024-08-08T12:00:00Z',
+        title: 'Royal Crown Team - A Seamless Real Estate Experience',
+        description: 'They worked diligently to offer us the best possible deal and explained every detail with politeness and thoroughness. Their dedication to ensuring we had a comprehensive understanding of the process was commendable. Furthermore, they extended warm hospitality during our time at the sales office, making us feel comfortable and valued as customers.',
+        author: {
+          name: 'Ajinkya Salavkar',
+          role: 'Customer',
+          href: '#',
+          imageUrl: '/assets/images/header/reviews.jpg'
+        }
+      },
+      {
+        id: 2,
+        dateTime: '2024-08-08T12:00:00Z',
+        title: 'Excellent Support!',
+        description: 'Royal Crown Property Developers exceeded my expectations with their exceptional service and attention to detail. From the moment I expressed interest in their properties, their team guided me through the entire process seamlessly. The quality of their construction and the luxurious amenities provided truly make them stand out in the real estate market. Highly recommended!',
+        author: {
+          name: 'Sudhir Patil',
+          role: 'Customer',
+          href: '#',
+          imageUrl: '/assets/images/header/reviews.jpg'
+        }
+      },
+      {
+        id: 3,
+        dateTime: '2024-08-08T12:00:00Z',
+        title: 'Great Experience!',
+        description: 'Overall, a fantastic experience. The team was professional and delivered exactly what was promised.',
+        author: {
+          name: 'Emily Davis',
+          role: 'Customer',
+          href: '#',
+          imageUrl: '/assets/images/header/reviews.jpg'
+        }
+      },
+    ];
+
+    const renderReviews = () => {
+      const container = document.getElementById('reviews-container');
+
+      posts.forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'flex flex-col max-w-cl items-start justify-between bg-gray-200 p-6 rounded-lg shadow-md';
+
+        article.innerHTML = `
+          <div class="flex items-center gap-x-4 text-xs">
+            <time datetime="${post.dateTime}">
+              <img src="/assets/images/header/stars.png" class="w-auto h-auto" alt="Stars">
+            </time>
+          </div>
+          <div class="group relative mt-4">
+            <h3 class="text-lg font-semibold leading-6 group-hover:text-gray-600">
+              <span>${post.title}</span>
+            </h3>
+            <p class="mt-3 line-clamp-3 text-sm leading-6 text-gray-600">
+              ${post.description}
+            </p>
+          </div>
+          <div class="relative mt-6 flex items-center gap-x-4">
+            <img src="${post.author.imageUrl}" class="h-10 w-10 rounded-full bg-gray-500" alt="${post.author.name}">
+            <div class="text-sm leading-6">
+              <div class="font-semibold">
+                <a href="${post.author.href}" class="hover:underline">
+                  ${post.author.name}
+                </a>
+              </div>
+              <p class="text-gray-600">${post.author.role}</p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(article);
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', renderReviews);
+
+
+    ///////  banking partner
+    const banks = [
+      { img: '/assets/images/banks/axisBank.jpg' },
+      { img: '/assets/images/banks/bankOfBaroda.jpg' },
+      { img: '/assets/images/banks/bankOfIndia.jpg' },
+      { img: '/assets/images/banks/canaraBank.jpg' },
+      { img: '/assets/images/banks/Hdfc.jpg' },
+      { img: '/assets/images/banks/icici2.png' },
+      { img: '/assets/images/banks/idbi.jpg' },
+      { img: '/assets/images/banks/Kotak.jpg' },
+      { img: '/assets/images/banks/sbi.jpg' },
+      { img: '/assets/images/banks/southIndian.jpg' },
+      { img: '/assets/images/banks/unionBank.jpg' }
+    ];
+
+    function createBankCard(bank) {
+      const figure = document.createElement('figure');
+      figure.className = 'relative w-48 h-24 sm:w-56 sm:h-28 cursor-pointer overflow-hidden rounded-xl m-4 border-4 border-gray-200 bg-white hover:bg-gray-50';
+
+      const img = document.createElement('img');
+      img.className = 'w-full h-full object-contain p-2';
+      img.src = bank.img;
+      img.alt = '';
+
+      figure.appendChild(img);
+      return figure;
+    }
+
+    function createMarqueeContent() {
+      const content = document.createElement('div');
+      content.className = 'marquee-content';
+
+      banks.forEach(bank => {
+        content.appendChild(createBankCard(bank));
+      });
+
+      return content;
+    }
+
+    function initializeMarquee() {
+      const container = document.getElementById('marqueeContainer');
+
+      // Create multiple copies of the content for seamless scrolling
+      for (let i = 0; i < 4; i++) {
+        container.appendChild(createMarqueeContent());
+      }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializeMarquee);
+
+
+    //////  Footer component
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+        .catch(error => console.error("Error loading footer:", error));
+    });
+
+
+
+    // Projects data
+    const projects = [
+      {
+        id: 1,
+        name: 'SAI PRASAD GARDEN, Nevali, Panvel',
+        image: 'https://via.placeholder.com/300x200',
+        details: [
+          '1 & 2 BHK Apartments',
+          '13 Buildings, G+4 Storey',
+          'Ready to Move In',
+          'Luxurious Amenities',
+        ],
+        href: '#'
+      },
+      {
+        id: 2,
+        name: 'JAYRAM RESIDENCY, Shedung, Panvel',
+        image: 'https://via.placeholder.com/300x200',
+        details: [
+          '1 & 2 BHK Apartments',
+          '4 Buildings, 10 Wings, G+7 Storey',
+          'Possession : March 2026',
+          'Luxurious Amenities',
+        ],
+        href: '#'
+      },
+      {
+        id: 3,
+        name: 'NEW CITY PALACE, Pushpak Nagar, Panvel',
+        image: 'https://via.placeholder.com/300x200',
+        details: [
+          '1RK, 1BHK Apartments',
+          'G+7 Storey',
+          'Possession : Dec 2025',
+          'Rooftop Amenities',
+        ],
+        href: '#'
+      },
+    ];
+
+    // Inject cards dynamically
+    const container = document.getElementById('project-container');
+    projects.forEach((project) => {
+      const card = document.createElement('div');
+      card.classList = 'card bg-white shadow-lg rounded-lg overflow-hidden border-2 border-red-800 p-4 flex flex-col';
+      card.innerHTML = `
+        <img src="${project.image}" alt="${project.name}" class="w-full h-48 object-cover">
+        <div class="mt-4 flex-grow flex flex-col">
+          <h3 class="text-lg font-semibold">${project.name}</h3>
+          <ul class="list-disc pl-5 text-sm text-gray-600 mt-2">
+            ${project.details.map(detail => `<li>${detail}</li>`).join('')}
+          </ul>
+          <a href="${project.href}" class="mt-4">
+            <button class="w-full py-2 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-md hover:from-red-700 hover:to-red-900 transition duration-300 text-sm">
+              Read More
+            </button>
+          </a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    // Animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.card').forEach(card => {
+      observer.observe(card);
+    });
+
+
+
+
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
+
+  <div>
+    <div id="hero-section-container" class="relative">
+      <!-- Hero Section -->
+      <div class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[535px] overflow-hidden">
+        <div id="slider" class="relative w-full h-full">
+          <!-- Slides will be inserted dynamically -->
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button onclick="previousSlide()"
+          class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition z-20">
+          &lt;
+        </button>
+        <button onclick="nextSlide()"
+          class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition z-20">
+          &gt;
+        </button>
+      </div>
+
+      <!-- Statistics Section -->
+      <div
+        class="stats-container absolute -bottom-14 left-1/2 transform -translate-x-1/2 w-11/12 sm:w-8/12 py-6 rounded-lg shadow-lg">
+        <div class="container mx-auto flex flex-wrap justify-between items-center text-white">
+          <div class="w-1/2 sm:w-1/4 text-center px-2">
+            <div class="text-3xl font-bold">
+              <span class="counter" data-target="5">0</span>+
+            </div>
+            <div class="text-sm">Under Construction Projects</div>
+          </div>
+          <div class="w-1/2 sm:w-1/4 text-center px-2">
+            <div class="text-3xl font-bold">
+              <span class="counter" data-target="15">0</span>+
+            </div>
+            <div class="text-sm">Years Of Expertise</div>
+          </div>
+          <div class="w-1/2 sm:w-1/4 text-center px-2">
+            <div class="text-3xl font-bold">
+              <span class="counter" data-target="605">0</span>+
+            </div>
+            <div class="text-sm">Happy Families</div>
+          </div>
+          <div class="w-1/2 sm:w-1/4 text-center px-2">
+            <div class="text-3xl font-bold">
+              <span class="counter" data-target="504">0</span>+
+            </div>
+            <div class="text-sm">Available Units</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Us Section  -->
+  <div id="about-us-container"></div>
+
+
+  <!-- ongoing project -->
+  <div id="ongoing-project-container"></div>
+
+
+
+
+  <!-- reviews  -->
+  <section class="relative min-h-screen py-16 bg-gray-100">
+    <div class="relative py-6">
+      <div class="absolute inset-0 bg-cover bg-center bg-fixed opacity-20"
+        style="background-image: url('/assets/images/header/reviewsBackground.jpg'); z-index: 0;"></div>
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-center text-black md:my-8">
+          Customer Reviews
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-gray-600 text-center">
+          Learn how to grow your business with our expert advice
+        </p>
+
+        <div
+          class="mx-auto mt-10 grid lg:grid-cols-3 grid-cols-1 gap-x-8 lg:max-w-none lg:mx-0 sm:py-16 sm:mt-8 py-10 border-b border-gray-200 border-t gap-y-16"
+          id="reviews-container">
+          <!-- Reviews will be dynamically added here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- banking  -->
+  <div class="container mx-auto px-4">
+    <div class="w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 text-gray-800">
+          Banking Partner
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-red-600 to-red-800 mx-auto mb-8"></div>
+
+        <div class="relative border-4 border-red-600 rounded-lg overflow-hidden md:mt-14 md:mb-4">
+          <div class="bg-white py-8">
+            <div class="marquee-container" id="marqueeContainer">
+              <!-- Marquee content will be inserted here -->
+            </div>
+          </div>
+          <div class="fade-edge-left"></div>
+          <div class="fade-edge-right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Container -->>
+  <div id="footer-container"></div>
+
+
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+      <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+  
+  </head>
+  
+  <body>
+      <header class="w-full relative bg-white shadow-md z-50">
+          <!-- Logo Section -->
+          <div class="absolute left-4 sm:left-1/4 transform sm:-translate-x-40 md:-translate-x-3/4 top-1">
+              <a href="/">
+                  <img src="/assets/images/newLogo.png" alt="Royal Crown Realty"
+                      class="h-28 w-29 sm:h-20 md:h-24 lg:h-32 transition-all duration-300">
+              </a>
+          </div>
+  
+          <!-- Top Contact Bar -->
+          <div class="bg-cyan-700 py-2">
+              <div
+                  class="container mx-auto px-6 sm:px-14 flex flex-col sm:flex-row justify-end items-center gap-2 sm:gap-12">
+  
+                  <!-- Contact Info -->
+                  <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 mb-2 sm:mb-0">
+                      <span class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition">
+                          <i class="fas fa-phone-alt mr-2"></i> (+91) 8689992777
+                      </span>
+                      <span class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition">
+                          <i class="fas fa-envelope mr-2"></i> info@royalcrowninfra.com
+                      </span>
+                  </div>
+  
+                  <!-- Social Media Icons -->
+                  <div class="flex items-center space-x-4">
+                      <a href="#" class="text-white text-lg hover:text-orange-500 transition">
+                          <i class="fab fa-twitter"></i>
+                      </a>
+                      <a href="https://www.facebook.com/royalcrowninfra/"
+                          class="text-white text-lg hover:text-orange-500 transition">
+                          <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="https://www.instagram.com/royalcrown.19/"
+                          class="text-white text-lg hover:text-orange-500 transition">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a href="#" class="text-white text-lg hover:text-orange-500 transition">
+                          <i class="fab fa-youtube"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Mobile Menu Toggle Button -->
+          <div class="sm:hidden absolute top-3 right-4 z-50">
+              <button id="mobile-menu-toggle" class="text-black hover:text-gray-600">
+                  <span id="menu-icon">☰</span>
+                  <span id="close-icon" class="hidden">✖</span>
+              </button>
+          </div>
+  
+          <!-- Desktop Navbar -->
+          <nav class="hidden sm:flex items-center justify-center py-6 sm:py-8 bg-white md:ml-72">
+              <ul class="flex items-center space-x-20">
+                  <li><a href="/" class="text-gray-700 hover:text-teal-500 font-bold">Home</a></li>
+                  <li class="relative group">
+                      <button class="text-gray-700 hover:text-teal-500 font-bold dropdown-toggle">About ⬇️</button>
+                      <ul
+                          class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                          <li><a href="/pages/about/ourTeam.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Our
+                                  Team</a></li>
+                          <li><a href="/pages/about/aboutTheGroup.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About The Group</a></li>
+                      </ul>
+                  </li>
+                  <li class="relative group">
+                      <button class="text-gray-700 hover:text-teal-500 font-bold dropdown-toggle">Projects ⬇️</button>
+                      <ul
+                          class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                          <li><a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ongoing Projects</a></li>
+                          <li><a href="/pages/projects/completedProjects/completedProject.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Completed Projects</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="/pages/gallery.html" class="text-gray-700 hover:text-teal-500 font-bold">Gallery</a></li>
+                  <li class="relative group">
+                      <button class="text-gray-700 hover:text-teal-500 font-bold dropdown-toggle">Buyers Guide ⬇️</button>
+                      <ul
+                          class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden group-hover:block">
+                          <li><a href="/pages/buyres-guide/panvelDevelopment.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Panvel Development</a></li>
+                          <li><a href="/pages/buyres-guide/homeLoans.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home Loans</a></li>
+                          <li><a href="/pages/buyres-guide/gst.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">GST</a></li>
+                          <li><a href="/pages/buyres-guide/stamp.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Stamp Duty and Registration</a>
+                          </li>
+                          <li><a href="/pages/buyres-guide/legal.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Legal & Tax Benefits</a></li>
+                          <li><a href="/pages/buyres-guide/nri.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">NRI Guide</a></li>
+                          <li><a href="/pages/buyres-guide/pmay.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">PMAY</a></li>
+                          <li><a href="/pages/buyres-guide/calculator.html"
+                                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100">EMI Calculator</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="/pages/contact.html" class="text-gray-700 hover:text-teal-500 font-bold">Contact Us</a>
+                  </li>
+              </ul>
+          </nav>
+  
+          <!-- Mobile Menu -->
+          <div id="mobile-menu"
+              class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 sm:hidden">
+              <ul class="p-4 pt-16 space-y-4">
+                  <li><a href="/" class="text-gray-700 font-bold">Home</a></li>
+                  <li class="dropdown">
+                      <button class="text-gray-700 font-bold dropdown-toggle">About ⬇️</button>
+                      <ul class="dropdown-menu hidden ml-4">
+                          <li><a href="/pages/ourTeam.html" class="block px-4 py-2 text-gray-700">Our Team</a></li>
+                          <li><a href="/pages/aboutTheGroup.html" class="block px-4 py-2 text-gray-700">About The
+                                  Group</a></li>
+                      </ul>
+                  </li>
+                  <li><a href="/pages/gallery.html" class="text-gray-700 font-bold">Gallery</a></li>
+              </ul>
+          </div>
+      </header>
+  
+      <script>
+          document.addEventListener('DOMContentLoaded', function () {
+              // Mobile menu toggle
+              const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+              const mobileMenu = document.getElementById('mobile-menu');
+              const menuIcon = document.getElementById('menu-icon');
+              const closeIcon = document.getElementById('close-icon');
+  
+              mobileMenuToggle.addEventListener('click', function () {
+                  mobileMenu.classList.toggle('-translate-x-full');
+                  menuIcon.classList.toggle('hidden');
+                  closeIcon.classList.toggle('hidden');
+              });
+  
+              // Dropdown toggle for both desktop and mobile
+              const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  
+              dropdownToggles.forEach(toggle => {
+                  toggle.addEventListener('click', function (event) {
+                      event.preventDefault();
+                      const dropdownMenu = this.nextElementSibling;
+                      dropdownMenu.classList.toggle('hidden');
+                  });
+              });
+  
+              // Close dropdowns when clicking outside
+              document.addEventListener('click', function (event) {
+                  if (!event.target.closest('.dropdown') && !event.target.closest('.group')) {
+                      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                          menu.classList.add('hidden');
+                      });
+                  }
+              });
+          });
+      </script>
+  </body>
+  
+  </html>
+
+</body>
+
+</html>

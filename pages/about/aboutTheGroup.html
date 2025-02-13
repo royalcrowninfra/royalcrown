@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-black">
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Header Section -->
+    <div class="bg-cover bg-center h-[300px] sm:h-[400px] md:h-[500px] lg:h-[500px]"
+        style="background-image: url('/assets/images/header/aboutgroup.jpg');">
+        <div class="container mx-auto py-32 text-6xl font-semibold text-black tracking-widest text-center lg:py-64">
+        </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-3xl md:text-4xl font-bold my-8 text-center">About Us</h1>
+
+    <!-- About Us Section -->
+    <div class="container mx-auto px-4 my-16">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                <h2 class="text-3xl font-bold mb-4">About Us</h2>
+                <p class="mb-4">Royal Crown always thinks about the needs and wants of their customer base before taking
+                    any decisions. At Royal Crown everything revolves around customer happiness. Which is why everything
+                    that it builds comes with the promise of “Housing for all”. Royal Crown doesn’t just build; it
+                    transforms, nurturing a future where business integrity and client satisfaction are as natural as
+                    breathing.</p>
+                <p class="mb-6">At Royal Crown every home is a labour of love, a pursuit of perfection, a space
+                    meticulously curated with handpicked elements to offer an unparalleled living experience; in a word,
+                    a masterpiece. !</p>
+                <a href="/contact"
+                    class="bg-white text-orange-500 border-2 border-orange-500 py-2 px-4 rounded-md inline-block transition duration-300 hover:bg-orange-500 hover:text-white">Book
+                    a Call</a>
+            </div>
+            <div class="md:w-1/2">
+                <img src="/assets/images/header/about-us2.jpg" alt="Construction Worker" class="w-full rounded-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Numbered Sections -->
+    <div class="container mx-auto px-4 my-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="mb-8">
+            <div class="flex items-center mb-2">
+                <div class="text-4xl font-bold text-cyan-500 mr-4">01</div>
+                <h3 class="text-xl font-semibold">Our Philosophy</h3>
+            </div>
+            <p class="text-gray-600">Our work philosophy that gives priority to everlasting emotional bonds over
+                material gains,translates into ever smiling faces! We constantly strive to satisfy ever changing needs
+                of our customers which are at par with the latest market trends of Real Estate. The result of which we
+                see in our more than 1000 satisfied customers! This is our investment for the future!</p>
+        </div>
+        <div class="mb-8">
+            <div class="flex items-center mb-2">
+                <div class="text-4xl font-bold text-cyan-500 mr-4">02</div>
+                <h3 class="text-xl font-semibold">VISION</h3>
+            </div>
+            <p class="text-gray-600">To be the most trusted and dependable provider of real estate solutions. To set new
+                standards of excellence in the service of providing top quality living, working and business spaces.</p>
+        </div>
+        <div class="mb-8">
+            <div class="flex items-center mb-2">
+                <div class="text-4xl font-bold text-cyan-500 mr-4">03</div>
+                <h3 class="text-xl font-semibold">MISSION</h3>
+            </div>
+            <p class="text-gray-600">By Gaining the trust of our stakeholders by being transparent in all our actions
+                and deeds. We strive to be amongst the top listed real estate solutions providers in the city.</p>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="container mx-auto px-4 my-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-cyan-500 p-4 text-white text-center">
+            <i class="fas fa-project-diagram text-4xl mb-2"></i>
+            <h3 class="text-xl font-semibold">Under Construction Projects</h3>
+            <p class="text-3xl font-bold">5</p>
+        </div>
+        <div class="bg-cyan-500 p-4 text-white text-center">
+            <i class="fas fa-users text-4xl mb-2"></i>
+            <h3 class="text-xl font-semibold">Years Of Expertise</h3>
+            <p class="text-3xl font-bold">15</p>
+        </div>
+        <div class="bg-cyan-500 p-4 text-white text-center">
+            <i class="fas fa-users text-4xl mb-2"></i>
+            <h3 class="text-xl font-semibold">Happy Families</h3>
+            <p class="text-3xl font-bold">600</p>
+        </div>
+        <div class="bg-cyan-500 p-4 text-white text-center">
+            <i class="fas fa-trophy text-4xl mb-2"></i>
+            <h3 class="text-xl font-semibold">Available Units</h3>
+            <p class="text-3xl font-bold">500</p>
+        </div>
+    </div>
+
+
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+
+
+    <script>
+        // Content data
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+
+
+        //////  Footer component
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+    </script>
+
+
+</body>
+
+</html>

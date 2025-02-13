@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Poppins', 'Inter', sans-serif;
+    }
+</style>
+
+<body>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Permissions & Approvals | Tax Benefits</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="bg-gray-100 text-gray-800">
+        <!-- Navbar Container -->
+        <div id="navbar-container"></div>
+
+
+        <div class="relative h-[400px] bg-cover bg-center"
+            style="background-image: url('/assets/images/buyersGuide/tax.jpg')">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="relative container mx-auto h-full flex items-center justify-center">
+                <h1 class="text-white text-5xl font-bold">Stamp duty & Reg</h1>
+            </div>
+        </div>
+
+        <!-- Legal Section -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">Legal Advice</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Text Content -->
+                    <div class="space-y-4">
+                        <p>
+                            At Royal Crown Infra, our seasoned tax experts will help you save your income tax while
+                            investing in under construction flats and properties at Panvel, Navi Mumbai. Signing a title
+                            report (received from the solicitor of the property) with any fine print and specific
+                            government reservations is unadvisable. Accept clearance reports that are lucid and
+                            specific.
+                        </p>
+                        <p>
+                            Precautionary measures will prevent you from getting embroiled in any future disputes. They
+                            will also help ensure that your home loans aren't scrutinized.
+                        </p>
+                    </div>
+                    <!-- Image -->
+                    <div class="flex justify-center items-center">
+                        <img src="/assets/images/buyersGuide/legal&taxBenefits/legal-advice.jpg" alt="Approved"
+                            class="w-full max-w-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Permssion Section -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">Permissions & Approvals</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Text Content -->
+                    <div class="space-y-4">
+                        <p>
+                            Before a construction begins; the builder must seek several permissions and approvals from
+                            relevant bodies. Without these clearances, the construction may come under litigation. Here
+                            is a list of documents and approvals that the builder must possess for all building work to
+                            commence Mumbai & Kalyan Dombivali Municipal Region.
+                        </p>
+                        <p>
+                            ULC order (in specific cases)
+                        </p>
+                        <p>
+                            IOD and CC of the project
+                        </p>
+                        <p>
+                            MCGM / KDMC approved plans
+                        </p>
+                    </div>
+                    <!-- Image -->
+                    <div class="flex justify-center items-center">
+                        <img src="/assets/images/buyersGuide/legal&taxBenefits/permissions-approvals.png"
+                            alt="Tax Benefits" class="w-full max-w-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tax benefits Section -->
+        <section class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">Tax Benefits</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Text Content -->
+                    <div class="space-y-4">
+                        <p>
+                            When buying a property with loans from specific financial institutions, tax authorities
+                            provide certain benefits and exemptions from tax payments.
+
+                            Section 24 of the Income Tax Act states that an investor is allowed to deduct an amount
+                            equivalent to the total interest payable on the housing loan from his/her taxable income
+                            within the same financial year.
+
+                            According to Section 80C of the Income Tax Act: A deduction u/s 80C (2) (xviii) is available
+                            on repayment of the principal during a financial year of up to Rs. 1,00,000/-
+                        </p>
+                    </div>
+                    <!-- Image -->
+                    <div class="flex justify-center items-center">
+                        <img src="/assets/images/buyersGuide/legal&taxBenefits/tax-Benefits.jpg" alt="Approved"
+                            class="w-full max-w-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Container -->>
+        <div id="footer-container"></div>
+
+
+
+
+        <script>
+            // Content data
+            function loadComponent(elementId, path) {
+                fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                    .catch(error => console.error('Error loading component:', error));
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                loadComponent('navbar-container', '/components/navbar.html');
+            });
+
+
+
+            //////  Footer component
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                    .catch(error => console.error("Error loading footer:", error));
+            });
+        </script>
+
+    </body>
+
+    </html>
+
+
+</body>
+
+</html>

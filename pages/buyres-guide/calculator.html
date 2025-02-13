@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<style>
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+
+
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-up.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+  }
+
+  .group:hover .dropdown-menu {
+    display: block;
+  }
+</style>
+
+<body class="bg-gray-100 text-gray-900">
+
+
+
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
+
+
+  <!-- Main Container -->
+  <div class="container mx-auto p-4">
+    <div class="relative container mx-auto h-full flex items-center justify-center">
+      <h1 class="text-black text-5xl font-bold">Emi Calculator</h1>
+    </div>
+    <div class="grid lg:grid-cols-2 gap-6 md:my-16">
+      <!-- Input Details -->
+      <div class="bg-white shadow-md rounded-2xl p-6">
+        <h2 class="text-2xl font-semibold text-teal-600 mb-4">Input Details</h2>
+
+        <div class="mb-4">
+          <label class="block font-medium">Loan Amount</label>
+          <input id="loanAmountSlider" type="range" min="0" max="20000000" step="100000" value="2000000"
+            class="w-full mt-2">
+          <div class="flex justify-between text-sm mt-2">
+            <span>₹0</span><span>₹2,00,00,000</span>
+          </div>
+          <input id="loanAmountInput" type="number" value="2000000" class="w-full p-2 mt-2 border rounded">
+        </div>
+
+        <div class="mb-4">
+          <label class="block font-medium">Interest Rate %</label>
+          <input id="interestRateSlider" type="range" min="0" max="30" step="0.1" value="9" class="w-full mt-2">
+          <div class="flex justify-between text-sm mt-2">
+            <span>0%</span><span>30%</span>
+          </div>
+          <input id="interestRateInput" type="number" value="9" class="w-full p-2 mt-2 border rounded">
+        </div>
+
+        <div class="mb-4">
+          <label class="block font-medium">Tenure (Months)</label>
+          <input id="tenureSlider" type="range" min="0" max="360" step="1" value="240" class="w-full mt-2">
+          <div class="flex justify-between text-sm mt-2">
+            <span>0</span><span>360</span>
+          </div>
+          <input id="tenureInput" type="number" value="240" class="w-full p-2 mt-2 border rounded">
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="bg-white shadow-md rounded-2xl p-6">
+        <h2 class="text-2xl font-semibold text-teal-600 mb-4">Results</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="text-sm text-gray-600">EMI (Monthly)</h3>
+            <p id="emiResult" class="text-xl font-bold text-purple-700">₹0</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="text-sm text-gray-600">Total Interest</h3>
+            <p id="totalInterestResult" class="text-xl font-bold text-purple-700">₹0</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="text-sm text-gray-600">Total Payment</h3>
+            <p id="totalPaymentResult" class="text-xl font-bold text-purple-700">₹0</p>
+          </div>
+          <div class="p-4 bg-purple-50 rounded-lg">
+            <h3 class="text-sm text-gray-600">Interest to Principal</h3>
+            <p id="interestToPrincipalResult" class="text-xl font-bold text-purple-700">0%</p>
+          </div>
+        </div>
+        <canvas id="donutChart" class="mt-4"></canvas>
+      </div>
+    </div>
+
+    <!-- Amortization Schedule -->
+    <div class="bg-white shadow-md rounded-2xl p-6 mt-6">
+      <h2 class="text-2xl font-semibold text-teal-600 mb-4">Amortization Schedule</h2>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="p-3 border bg-teal-100">Year</th>
+            <th class="p-3 border bg-teal-100">Principal</th>
+            <th class="p-3 border bg-teal-100">Interest</th>
+            <th class="p-3 border bg-teal-100">Balance</th>
+            <th class="p-3 border bg-teal-100">Loan Paid to Date</th>
+          </tr>
+        </thead>
+        <tbody id="amortizationTable">
+          <!-- Rows will be dynamically generated -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer Container -->>
+  <div id="footer-container"></div>
+
+
+  <script>
+    const loanAmountSlider = document.getElementById('loanAmountSlider');
+    const loanAmountInput = document.getElementById('loanAmountInput');
+    const interestRateSlider = document.getElementById('interestRateSlider');
+    const interestRateInput = document.getElementById('interestRateInput');
+    const tenureSlider = document.getElementById('tenureSlider');
+    const tenureInput = document.getElementById('tenureInput');
+    const emiResult = document.getElementById('emiResult');
+    const totalInterestResult = document.getElementById('totalInterestResult');
+    const totalPaymentResult = document.getElementById('totalPaymentResult');
+    const interestToPrincipalResult = document.getElementById('interestToPrincipalResult');
+    const amortizationTable = document.getElementById('amortizationTable');
+    const donutChartCanvas = document.getElementById('donutChart').getContext('2d');
+
+    let donutChart;
+
+    function updateEMI() {
+      const loanAmount = parseFloat(loanAmountInput.value);
+      const interestRate = parseFloat(interestRateInput.value) / 100 / 12;
+      const tenure = parseInt(tenureInput.value);
+
+      const emi = (loanAmount * interestRate * Math.pow(1 + interestRate, tenure)) /
+        (Math.pow(1 + interestRate, tenure) - 1);
+      const totalPayment = emi * tenure;
+      const totalInterest = totalPayment - loanAmount;
+      const interestToPrincipal = ((totalInterest / loanAmount) * 100).toFixed(2);
+
+      emiResult.textContent = `₹${emi.toFixed(2)}`;
+      totalInterestResult.textContent = `₹${totalInterest.toFixed(2)}`;
+      totalPaymentResult.textContent = `₹${totalPayment.toFixed(2)}`;
+      interestToPrincipalResult.textContent = `${interestToPrincipal}%`;
+
+      updateChart(loanAmount, totalInterest);
+      updateAmortizationSchedule(loanAmount, tenure, emi, interestRate);
+    }
+
+    function updateChart(loanAmount, totalInterest) {
+      if (donutChart) donutChart.destroy();
+
+      donutChart = new Chart(donutChartCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: ['Loan Amount', 'Total Interest'],
+          datasets: [{
+            data: [loanAmount, totalInterest],
+            backgroundColor: ['#3b82f6', '#a855f7'],
+          }],
+        },
+        options: {
+          plugins: {
+            datalabels: {
+              color: '#fff',
+              formatter: (value, ctx) => `${((value / (loanAmount + totalInterest)) * 100).toFixed(1)}%`,
+            },
+          },
+        },
+      });
+    }
+
+    function updateAmortizationSchedule(loanAmount, tenure, emi, interestRate) {
+      amortizationTable.innerHTML = '';
+      let balance = loanAmount;
+      let year = new Date().getFullYear();
+
+      for (let i = 1; i <= tenure; i++) {
+        const interest = balance * interestRate;
+        const principal = emi - interest;
+        balance -= principal;
+
+        if (i % 12 === 0 || i === tenure) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="p-3 border">${year++}</td>
+            <td class="p-3 border">₹${principal.toFixed(2)}</td>
+            <td class="p-3 border">₹${interest.toFixed(2)}</td>
+            <td class="p-3 border">₹${Math.max(balance, 0).toFixed(2)}</td>
+            <td class="p-3 border">${((loanAmount - balance) / loanAmount * 100).toFixed(2)}%</td>
+          `;
+          amortizationTable.appendChild(row);
+        }
+      }
+    }
+
+    loanAmountSlider.addEventListener('input', (e) => {
+      loanAmountInput.value = e.target.value;
+      updateEMI();
+    });
+    loanAmountInput.addEventListener('input', (e) => {
+      loanAmountSlider.value = e.target.value;
+      updateEMI();
+    });
+    interestRateSlider.addEventListener('input', (e) => {
+      interestRateInput.value = e.target.value;
+      updateEMI();
+    });
+    interestRateInput.addEventListener('input', (e) => {
+      interestRateSlider.value = e.target.value;
+      updateEMI();
+    });
+    tenureSlider.addEventListener('input', (e) => {
+      tenureInput.value = e.target.value;
+      updateEMI();
+    });
+    tenureInput.addEventListener('input', (e) => {
+      tenureSlider.value = e.target.value;
+      updateEMI();
+    });
+
+    updateEMI();
+
+
+
+
+
+    // Content data
+    function loadComponent(elementId, path) {
+      fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+        .catch(error => console.error('Error loading component:', error));
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      loadComponent('navbar-container', '/components/navbar.html');
+    });
+
+
+
+    //////  Footer component
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+        .catch(error => console.error("Error loading footer:", error));
+    });
+  </script>
+
+</body>
+
+</html>

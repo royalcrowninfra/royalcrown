@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Crown Infra</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+
+
+  <style>
+    body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+    }
+
+    /*    Image corousel Css*/
+    .fade-enter {
+      opacity: 0;
+    }
+
+    .fade-enter-active {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+
+
+    /*    About us Css*/
+
+    @keyframes scale {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .service-card {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+
+    /*    ongoing project css*/
+    @keyframes scroll {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .scrolling-item {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: transform 1s ease-out, opacity 1s ease-out;
+    }
+
+    .scrolling-item.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+
+
+    /*   Customer review */
+    .review-card-custom {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .review-card-custom.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .background-custom {
+      background-image: url('/assets/images/header/reviewsBackground.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+
+
+
+
+
+    /*   Banking Review */
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-100% - var(--gap)));
+      }
+    }
+
+    .marquee-container {
+      --gap: 1rem;
+      --duration: 30s;
+      display: flex;
+      overflow: hidden;
+      gap: var(--gap);
+      padding: 0.5rem;
+    }
+
+    .marquee-content {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around;
+      gap: var(--gap);
+      animation: marquee var(--duration) linear infinite;
+    }
+
+    .marquee-content:hover {
+      animation-play-state: paused;
+    }
+
+    .fade-edge-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 16.666667%;
+      background: linear-gradient(to right, white 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .fade-edge-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 16.666667%;
+      background: linear-gradient(to left, white 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
+
+
+  <!--   Hero Section Image Corousel  -->
+  <div class="relative">
+    <div class="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[535px] overflow-hidden">
+      <img id="slider-image" src="/assets/images/homepage/bann-one.png" alt="Slide 1"
+        class="absolute inset-0 object-cover object-center w-full h-full fade-enter-active">
+      <div id="slider-text" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+        <h2 class="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">Unlocking Doors,
+          Finding Homes</h2>
+      </div>
+      <button id="prev-btn"
+        class="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 sm:p-2 rounded-full hover:bg-opacity-75 transition-all text-sm sm:text-base z-10">&lt;</button>
+      <button id="next-btn"
+        class="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 sm:p-2 rounded-full hover:bg-opacity-75 transition-all text-sm sm:text-base z-10">&gt;</button>
+    </div>
+    <div
+      class="relative bottom-14 left-1/2 transform -translate-x-1/2 w-8/12 bg-gradient-to-r from-cyan-400 to-cyan-700 py-4 sm:py-6 md:py-6">
+      <div class="container mx-auto flex flex-wrap justify-between items-center text-white">
+        <div class="w-1/2 sm:w-1/4 text-center px-2 sm:px-4 mb-4 sm:mb-0">
+          <div id="count-0" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">0+</div>
+          <div class="text-xs sm:text-sm">Under Construction Projects</div>
+        </div>
+        <div class="w-1/2 sm:w-1/4 text-center px-2 sm:px-4 mb-4 sm:mb-0">
+          <div id="count-1" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">0+</div>
+          <div class="text-xs sm:text-sm">Years Of Expertise</div>
+        </div>
+        <div class="w-1/2 sm:w-1/4 text-center px-2 sm:px-4 mb-4 sm:mb-0">
+          <div id="count-2" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">0+</div>
+          <div class="text-xs sm:text-sm">Happy Families</div>
+        </div>
+        <div class="w-1/2 sm:w-1/4 text-center px-2 sm:px-4 mb-4 sm:mb-0">
+          <div id="count-3" class="text-2xl sm:text-3xl md:text-4xl font-bold mb-1">0+</div>
+          <div class="text-xs sm:text-sm">Available Units</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!--   about u s-->
+
+  <div class="container mx-auto py-16 px-4 md:px-8 lg:px-16">
+    <div class="grid md:grid-cols-2 gap-12 items-center relative">
+      <!-- Background Logo -->
+      <div class="absolute inset-0 bg-no-repeat hidden md:block left-20 lg:left-48 opacity-10"
+        style="background-image: url('/assets/images/header/aboutlogo.jpg');">
+      </div>
+
+      <!-- Text Section -->
+      <div class="relative z-10 text-center md:text-center fade-in">
+        <h2 class="text-4xl sm:text-5xl font-extrabold animate-scale">Welcome To <br>
+          <span class="text-5xl sm:text-6xl text-cyan-600">Royal Crown</span>
+        </h2>
+        <p class="text-gray-600 mt-4">Royal Crown is Navi Mumbai's top most Real Estate Development Brand...</p>
+        <p class="text-gray-600 mt-2">Explore new residential projects in Panvel with modern amenities...</p>
+        <a href="#" class="inline-block mt-6">
+          <button
+            class="bg-cyan-600 text-white py-2 px-8 sm:px-12 rounded-full font-semibold hover:shadow-lg hover:scale-105 active:scale-95 transition-all">
+            Read More
+          </button>
+        </a>
+      </div>
+
+      <!-- Image Section -->
+      <div class="relative fade-in hover:scale-105 transition-transform duration-300">
+        <img src="/assets/images/header/about-us3.jpg" alt="About Us"
+          class="rounded-lg shadow-lg w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="container mx-auto px-4 py-14">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="servicesContainer">
+      </div>
+    </div>
+  </div>
+
+
+  <!--   ongoing project -->
+  <div class="bg-gray-100">
+    <div class="max-w-7xl mx-auto py-20 px-4">
+      <h2 class="text-3xl font-bold text-center mb-6">Ongoing Projects</h2>
+      <div class="w-40 h-1 bg-red-500 mx-auto mb-3"></div>
+      <div class="w-16 h-1 bg-red-500 mx-auto mb-8"></div>
+      <div class="flex space-x-6 overflow-hidden">
+        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
+          <img src="/assets/images/projects/saiPrasad.jpeg" alt="Sai Prasad Garden" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold">SAI PRASAD GARDEN, Nevali, Panvel</h3>
+            <ul class="mt-2 text-sm text-gray-600 space-y-1">
+              <li>&#8226; 1 & 2 BHK Apartments</li>
+              <li>&#8226; 13 Buildings, G+4 Storey</li>
+              <li>&#8226; Ready to Move In</li>
+              <li>&#8226; Luxurious Amenities</li>
+            </ul>
+            <a href="/pages/projects/ongoingProjects/saiPrasadGarden.html"><button
+                class="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
+                More</button></a>
+          </div>
+        </div>
+        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
+          <img src="/assets/images/projects/jayramResidency.jpg" alt="Jayram Residency"
+            class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold">JAYRAM RESIDENCY, Shedung, Panvel</h3>
+            <ul class="mt-2 text-sm text-gray-600 space-y-1">
+              <li>&#8226; 1 & 2 BHK Apartments</li>
+              <li>&#8226; 4 Buildings, 10 Wings, G+7 Storey</li>
+              <li>&#8226; Possession: March 2026</li>
+              <li>&#8226; Luxurious Amenities</li>
+            </ul>
+            <a href="/pages/projects/ongoingProjects/jayramresidency.html"><button
+                class="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
+                More</button></a>
+          </div>
+        </div>
+        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
+          <img src="/assets/images/projects/newCity.jpeg" alt="New City Palace" class="w-full h-56 object-cover">
+          <div class="p-6">
+            <h3 class="text-lg font-bold">NEW CITY PALACE, Pushpak Nagar, Panvel</h3>
+            <ul class="mt-2 text-sm text-gray-600 space-y-1">
+              <li>&#8226; 1RK, 1BHK Apartments</li>
+              <li>&#8226; G+7 Storey</li>
+              <li>&#8226; Possession: Dec 2025</li>
+              <li>&#8226; Rooftop Amenities</li>
+            </ul>
+            <a href="/pages/projects/ongoingProjects/newcitypalace.html"><button
+                class="mt-8 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
+                More</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--   customer review   -->
+
+  <div class="bg-gray-100 background-custom md:py-32">
+    <div class="max-w-7xl mx-auto py-12 px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Customer Reviews</h2>
+      <p class="text-lg text-gray-600 mt-2">Learn how to grow your business with our expert advice</p>
+      <div class="mt-8 border-t border-gray-300"></div>
+      <div class="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+          <div class="flex items-center gap-1">
+            <span class="text-yellow-500 text-lg">★★★★★</span>
+          </div>
+          <h3 class="text-lg font-semibold mt-3">Royal Crown Team - A Seamless Real Estate Experience</h3>
+          <p class="text-sm text-gray-600 mt-2">They worked diligently to offer us the best possible deal and explained
+            every detail with politeness and thoroughness.</p>
+          <div class="flex items-center mt-4 md:mt-20">
+            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Ajinkya Salavkar">
+            <div class="ml-3">
+              <p class="font-semibold">Ajinkya Salavkar</p>
+              <p class="text-sm text-gray-500">Customer</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+          <div class="flex items-center gap-1">
+            <span class="text-yellow-500 text-lg">★★★★★</span>
+          </div>
+          <h3 class="text-lg font-semibold mt-3">Excellent Support!</h3>
+          <p class="text-sm text-gray-600 mt-2">Royal Crown Property Developers exceeded my expectations with their
+            exceptional service and attention to detail.</p>
+          <div class="flex items-center mt-4 md:mt-28">
+            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Sudhir Patil">
+            <div class="ml-3">
+              <p class="font-semibold">Sudhir Patil</p>
+              <p class="text-sm text-gray-500">Customer</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+          <div class="flex items-center gap-1">
+            <span class="text-yellow-500 text-lg">★★★★★</span>
+          </div>
+          <h3 class="text-lg font-semibold mt-3">Great Experience!</h3>
+          <p class="text-sm text-gray-600 mt-2">Overall, a fantastic experience. The team was professional and delivered
+            exactly what was promised.</p>
+          <div class="flex items-center mt-4 md:mt-28">
+            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Emily Davis">
+            <div class="ml-3">
+              <p class="font-semibold">Emily Davis</p>
+              <p class="text-sm text-gray-500">Customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- banking  -->
+  <div class="container mx-auto px-4 md:mt-12">
+    <div class="w-full">
+      <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 text-gray-800">
+          Banking Partner
+        </h2>
+        <div class="w-40 h-1 bg-red-500 mx-auto mb-3"></div>
+        <div class="w-16 h-1 bg-red-500 mx-auto mb-8"></div>
+
+        <div class="relative border-4 border-red-600 rounded-lg overflow-hidden md:mt-14 md:mb-4">
+          <div class="bg-white py-8">
+            <div class="marquee-container" id="marqueeContainer">
+              <!-- Marquee content will be inserted here -->
+            </div>
+          </div>
+          <div class="fade-edge-left"></div>
+          <div class="fade-edge-right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footerbar Container-->
+   <div id="footerbar-container"></div>
+
+
+
+
+
+
+
+
+
+
+  <!-- Footer Container -->
+  <div id="footer-container"></div>
+
+
+</body>
+<script>
+
+
+  //////////////////////////////////////////////////////////////////////  Navabar component
+  function loadComponent(elementId, path) {
+    fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+      .catch(error => console.error('Error loading component:', error));
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    loadComponent('navbar-container', '/components/navbar.html');
+  });
+
+
+
+
+
+  ////////////////////////////////////////////////////////////         Image corousel javascript            /////////////////////////////////////
+  const images = [
+    { src: '/assets/images/homepage/bann-one.png', text: 'Unlocking Doors, Finding Homes' },
+    { src: '/assets/images/homepage/bann-two.png', text: 'Your Dream Home Awaits' },
+    { src: '/assets/images/homepage/bann-three.png', text: 'Building Futures, One Home at a Time' }
+  ];
+
+  let currentIndex = 0;
+  const imageElement = document.getElementById("slider-image");
+  const textElement = document.getElementById("slider-text").querySelector("h2");
+
+  function updateSlider() {
+    imageElement.classList.remove("fade-enter-active");
+    setTimeout(() => {
+      imageElement.src = images[currentIndex].src;
+      textElement.textContent = images[currentIndex].text;
+      imageElement.classList.add("fade-enter-active");
+    }, 50);
+  }
+
+  document.getElementById("prev-btn").addEventListener("click", () => {
+    currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+    updateSlider();
+  });
+
+  document.getElementById("next-btn").addEventListener("click", () => {
+    currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+    updateSlider();
+  });
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateSlider();
+  }, 5000);
+
+  const statistics = [5, 15, 605, 504];
+
+  statistics.forEach((endValue, index) => {
+    let count = 0;
+    const interval = setInterval(() => {
+      if (count < endValue) {
+        count++;
+        document.getElementById(`count-${index}`).textContent = count + "+";
+      } else {
+        clearInterval(interval);
+      }
+    }, 2000 / endValue);
+  });
+
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////// about us javascript ///////////////////////////
+
+  const services = [
+    { icon: 'fa-magnifying-glass', title: "Search & Shortlisting" },
+    { icon: 'fa-car', title: "Site Visit" },
+    { icon: 'fa-hand-holding-dollar', title: "Home Loan Assistance" },
+    { icon: 'fa-scale-balanced', title: "Legal Advice" },
+    { icon: 'fa-house-chimney', title: "Unit Booking" }
+  ];
+
+  function createServiceCard(service) {
+    const card = document.createElement('div');
+    card.className = 'service-card bg-cyan-600 p-6 rounded-xl text-white text-center shadow-lg cursor-pointer fade-in';
+    card.innerHTML = `
+              <div>
+                  <i class="fa-solid ${service.icon} text-4xl mb-4"></i>
+                  <p class="font-semibold text-lg">${service.title}</p>
+              </div>`;
+    return card;
+  }
+
+  function initializeServices() {
+    const container = document.getElementById('servicesContainer');
+    services.forEach(service => container.appendChild(createServiceCard(service)));
+
+    // Add fade-in effect
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('show'));
+    }, 200);
+  }
+
+  document.addEventListener('DOMContentLoaded', initializeServices);
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////// Ongoing Projects javascript ///////////////////////////
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".scrolling-item");
+    function handleScroll() {
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          item.classList.add("active");
+        }
+      });
+    }
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+  });
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////  customer review /////////////////////////////////
+  document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".review-card-custom");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.3 });
+    cards.forEach(card => observer.observe(card));
+  });
+
+
+  /////////////////////////////////////////////////////////////////////////////   Banking review ///////////////////////////////////
+
+
+  const banks = [
+    { img: '/assets/images/banks/axisBank.jpg' },
+    { img: '/assets/images/banks/bankOfBaroda.jpg' },
+    { img: '/assets/images/banks/bankOfIndia.jpg' },
+    { img: '/assets/images/banks/canaraBank.jpg' },
+    { img: '/assets/images/banks/Hdfc.jpg' },
+    { img: '/assets/images/banks/icici2.png' },
+    { img: '/assets/images/banks/idbi.jpg' },
+    { img: '/assets/images/banks/Kotak.jpg' },
+    { img: '/assets/images/banks/sbi.jpg' },
+    { img: '/assets/images/banks/southIndian.jpg' },
+    { img: '/assets/images/banks/unionBank.jpg' }
+  ];
+
+  function createBankCard(bank) {
+    const figure = document.createElement('figure');
+    figure.className = 'relative w-48 h-24 sm:w-56 sm:h-28 cursor-pointer overflow-hidden rounded-xl m-4 border-4 border-gray-200 bg-white hover:bg-gray-50';
+
+    const img = document.createElement('img');
+    img.className = 'w-full h-full object-contain p-2';
+    img.src = bank.img;
+    img.alt = '';
+
+    figure.appendChild(img);
+    return figure;
+  }
+
+  function createMarqueeContent() {
+    const content = document.createElement('div');
+    content.className = 'marquee-content';
+
+    banks.forEach(bank => {
+      content.appendChild(createBankCard(bank));
+    });
+
+    return content;
+  }
+
+  function initializeMarquee() {
+    const container = document.getElementById('marqueeContainer');
+
+    // Create multiple copies of the content for seamless scrolling
+    for (let i = 0; i < 4; i++) {
+      container.appendChild(createMarqueeContent());
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeMarquee);
+  function loadFooterBanner() {
+    fetch("/footerbanner.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("footerBanner").innerHTML = data;
+      })
+      .catch(error => console.error("Error loading footer banner:", error));
+  }
+
+  document.addEventListener("DOMContentLoaded", loadFooterBanner);
+
+
+
+  ////////////////////////////////////////////////////////////////           Footer   /////////////////////////////////////////////////
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+      .catch(error => console.error("Error loading footer:", error));
+  });
+
+
+  ////////////////////////////////////////////////////////////////           Footer   /////////////////////////////////////////////////
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
+      .catch(error => console.error("Error loading footer:", error));
+  });
+
+
+</script>
+
+</html>

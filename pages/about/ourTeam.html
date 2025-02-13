@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-gray-100 to-white min-h-screen">
+
+  <!-- Navbar Container -->
+  <div id="navbar-container"></div>
+
+
+  <section class="container mx-auto px-4 py-20 md:py-32">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-12 md:mb-0 fade-in-up">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-gray-800">Turn Your Ideas Into Live Web Experiences
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">We bring your visions to life with cutting-edge web development
+          and design solutions.</p>
+        <a href="/contact"
+          class="bg-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-purple-700 transition duration-300 shadow-lg">Learn
+          More</a>
+      </div>
+      <div class="md:w-1/2 fade-in-up">
+        <img src="images/header/women.png" alt="Woman in yellow shirt"
+          class="w-full rounded-3xl h-[400px] md:h-[500px] object-cover">
+      </div>
+    </div>
+  </section>
+  <section class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 mb-12 md:mb-0 pr-0 md:pr-12 fade-in-up">
+          <h2 class="text-4xl font-bold mb-6 text-gray-800">About Our Approach</h2>
+          <p class="text-xl text-gray-600 mb-6">We believe in the power of innovative design and cutting-edge
+            technology to transform ideas into impactful digital experiences.
+
+            Our team of experts is dedicated to crafting bespoke solutions that not only meet but exceed
+            your expectations, ensuring your digital presence stands out in today's competitive landscape.
+          </p>
+        </div>
+        <div class="md:w-1/2 space-y-10">
+          <div class="flex items-start fade-in-up">
+            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
+              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold mb-3 text-gray-800">RESEARCH</h3>
+              <p class="text-lg text-gray-600">We delve deep into your industry and target audience to
+                create data-driven strategies that resonate with your users and drive results.</p>
+            </div>
+          </div>
+          <div class="flex items-start fade-in-up">
+            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
+              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold mb-3 text-gray-800">STRATEGY</h3>
+              <p class="text-lg text-gray-600">Our comprehensive approach ensures that every aspect of
+                your project is carefully planned and executed for maximum impact and efficiency.</p>
+            </div>
+          </div>
+          <div class="flex items-start fade-in-up">
+            <div class="bg-purple-600 p-4 rounded-lg mr-6 shadow-lg">
+              <img src="icons/research.svg" class="w-10 h-10" alt="Research Icon">
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold mb-3 text-gray-800">DESIGN</h3>
+              <p class="text-lg text-gray-600">We create visually stunning and user-friendly designs that
+                captivate your audience and enhance their digital experience.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-gray-100 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold mb-12 text-center text-gray-800 fade-in-up">Meet Our Team</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden fade-in-up">
+          <img src="images/header/reviews.jpg" alt="Rajesh Chavan" class="w-full h-80 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2 text-cyan-900">Rajesh Chavan</h3>
+            <p class="text-lg font-medium text-purple-600 mb-4">Co-Founder and Managing Director</p>
+            <p class="text-gray-600">Rajesh Chavan has an uncanny skill of convincing people and handles the
+              corporate sales at Royal Crown Infra...</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden fade-in-up">
+          <img src="images/header/reviews.jpg" alt="Roshan Jadhav" class="w-full h-80 object-cover">
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold mb-2 text-cyan-900">Roshan Jadhav</h3>
+            <p class="text-lg font-medium text-purple-600 mb-4">Co-Founder</p>
+            <p class="text-gray-600">Roshan Jadhav is a multi-talented person who looks after all the
+              functional areas like Marketing and Administration...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer Container -->>
+  <div id="footer-container"></div>
+
+
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".fade-in-up");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.1 });
+      elements.forEach(el => observer.observe(el));
+    });
+
+
+
+    // Content data
+    function loadComponent(elementId, path) {
+      fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+        .catch(error => console.error('Error loading component:', error));
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      loadComponent('navbar-container', '/components/navbar.html');
+    });
+
+
+
+    //////  Footer component
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+        .catch(error => console.error("Error loading footer:", error));
+    });
+  </script>
+
+
+
+</body>
+
+</html>

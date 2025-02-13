@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+
+        /* Keyframe animations for text reveal */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+
+
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-cyan-50 to-cyan-50 p-4">
+        <!-- Coming Soon Section -->
+        <div class="text-center">
+            <!-- Title -->
+            <h1 id="coming-soon-title" class="text-6xl md:text-8xl font-bold text-blue-800 mb-8">
+                <!-- "COMING SOON" letters will be dynamically added by JS -->
+            </h1>
+
+            <!-- Subtitle -->
+            <p id="coming-soon-subtitle" class="text-2xl md:text-3xl text-blue-600 mb-12 fade-in">
+                We're preparing something amazing for our gallery
+            </p>
+
+            <!-- Button -->
+            <div class="flex justify-center space-x-4 fade-in">
+                <a href="/"
+                    class="bg-red-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:scale-105 transition duration-300">
+                    Stay Tuned
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->>
+    <div id="footer-container"></div>
+
+
+
+
+    <script>
+        // Split "COMING SOON" into individual letters and animate
+        const titleText = "COMING SOON";
+        const titleElement = document.getElementById("coming-soon-title");
+
+        // Create span elements for each letter
+        titleText.split("").forEach((letter, index) => {
+            const span = document.createElement("span");
+            span.textContent = letter;
+            span.className = "inline-block mx-2 scale-in";
+            span.style.animationDelay = `${index * 0.1}s`; // Stagger animation
+            titleElement.appendChild(span);
+        });
+
+
+        // Content data
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+
+
+        //////  Footer component
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+    </script>
+</body>
+
+</html>

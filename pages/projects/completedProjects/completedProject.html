@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+
+        /* Smooth image hover effect */
+        .project-image {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+
+
+    <!-- Hero Section -->
+    <div class="relative">
+        <div class="absolute inset-0 bg-black/40 z-10"></div> <!-- Black overlay -->
+        <div
+            class="bg-[url('/assets//images/completed.jpg')] bg-center bg-cover h-[300px] sm:h-[400px] md:h-[500px] lg:h-[500px] flex justify-center items-center">
+            <h1
+                class="text-4xl sm:text-5xl md:text-6xl font-semibold text-white tracking-widest text-center drop-shadow-lg z-20 px-4">
+                Completed Projects
+            </h1>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <div class="container mx-auto py-12 px-4">
+        <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <!-- Project Cards will be inserted here via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Project data
+        const projects = [
+            {
+                id: 1,
+                title: "Project One",
+                description: "This is a description of Project One. It was a residential complex completed in 2022, featuring modern amenities and sustainable design.",
+                image: "/assets/images/projects/completed/img-1.jpg",
+            },
+            {
+                id: 2,
+                title: "Project Two",
+                description: "Project Two was a commercial building completed in 2023. It features state-of-the-art office spaces and eco-friendly infrastructure.",
+                image: "/assets/images/projects/img-2.jpg",
+            },
+            {
+                id: 3,
+                title: "Project three",
+                description: "Project Two was a commercial building completed in 2023. It features state-of-the-art office spaces and eco-friendly infrastructure.",
+                image: "/assets/images/projects/img-3.jpg",
+            },
+        ];
+
+        // Select the container
+        const container = document.getElementById('projects-container');
+
+        // Generate project cards dynamically
+        projects.forEach((project, index) => {
+            const projectCard = document.createElement('div');
+            projectCard.className = `project-card bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl fade-in`;
+            projectCard.style.transitionDelay = `${index * 0.2}s`; // Staggered animation effect
+
+            projectCard.innerHTML = `
+                <div class="md:flex flex-col md:flex-row">
+                    <div class="md:w-1/2 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-black/20 z-10"></div>
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
+                        <div class="relative h-64 md:h-full">
+                            <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover project-image">
+                        </div>
+                    </div>
+                    <div class="p-6 md:w-1/2 flex flex-col justify-between bg-white">
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">${project.title}</h2>
+                            <p class="text-gray-600 text-sm md:text-base mb-6">${project.description}</p>
+                        </div>
+                        <button class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-md hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-sm md:text-base font-medium shadow-md hover:shadow-lg">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(projectCard);
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe each project card
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+        ////navbar
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+
+        ///// footer
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+
+
+    </script>
+</body>
+
+</html>

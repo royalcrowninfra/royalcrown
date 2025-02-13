@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+
+<style>
+    body {
+        font-family: 'Poppins', 'Inter', sans-serif;
+    }
+</style>
+
+
+<body class="min-h-screen text-black">
+
+
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+
+    <!-- Header Section -->
+    <div class="bg-cover bg-center h-[300px] sm:h-[400px] md:h-[500px] lg:h-[500px]"
+        style="background-image: url('/assets/images/buyersGuide/panveldevelopment/futureDevelopment.jpg');">
+        <div class="container mx-auto py-32 text-6xl font-semibold text-black tracking-widest text-center lg:py-64">
+        </div>
+    </div>
+
+    <!-- Content Blocks Container -->
+    <div class="space-y-8 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" id="contentContainer">
+            <!-- Content blocks will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- Footer Container -->>
+    <div id="footer-container"></div>
+
+
+
+
+    <script>
+        // Navbar
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+        const contentBlocks = [
+            {
+                title: "Upcoming Navi Mumbai International Airport (NMIA)",
+                description: "Allowing you the luxury of circumventing the Mumbai jams and take your flight directly from NMIA located within striking distance of your Royal Crown home.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/airport.jpg"
+            },
+            {
+                title: "Upcoming Mumbai Trans Harbour Link (MTNL)",
+                description: "The Mumbai Trans Harbour Link (MTHL) is an ambitious infrastructure project designed to connect Mumbai with Navi Mumbai across the Arabian Sea. This 22 km-long bridge will significantly reduce travel time between the two cities, cutting it from about 90 minutes to just 30 minutes. The link will consist of a sea bridge, land viaducts, and tunnels, with a four-lane road for vehicles. It aims to ease traffic congestion, promote economic growth in Navi Mumbai, and provide better connectivity for both commercial and recreational purposes. The MTHL is expected to be completed in the near future, transforming Mumbai transport network.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/local.jpg"
+            },
+            {
+                title: "Multimodal Corridor",
+                description: "The 126 km long Alibag-Virar corridor is a crucial infrastructure project aimed at enhancing connectivity within the Mumbai Metropolitan Region (MMR). This ambitious corridor will link key areas like Alibag and Virar, providing improved access to the upcoming Navi Mumbai International Airport, as well as other significant nodes in MMR. It will serve as an important transportation route for both commuters and goods, reducing travel time between suburban and peripheral areas. This corridor is expected to boost regional development, ease traffic congestion, and support economic growth by improving connectivity to Mumbai’s airport and other key locations in Navi Mumbai.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/highway.jpg"
+            },
+            {
+                title: "Panvel–Karjat Railway Line",
+                description: "The Panvel–Karjat Railway Line is a vital railway project aimed at enhancing connectivity in the Mumbai Metropolitan Region. Spanning approximately 40 kilometers, this line connects Panvel in Navi Mumbai to Karjat in the Raigad district.The line is part of the broader efforts to improve suburban railway networks, reduce travel time, and decongest Mumbai main railway stations. It will provide better access to the rapidly developing areas of Navi Mumbai and its surroundings, improving transport for both commuters and freight.The Panvel-Karjat line will play a key role in promoting economic growth and easing congestion in the region.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/panvelcst.jpg"
+            },
+            {
+                title: "CST–Panvel Fast Railway Corridor",
+                description: "The CST–Panvel Fast Railway Corridor is a major railway project designed to enhance connectivity between Mumbai’s Chhatrapati Shivaji Maharaj Terminus (CST) and Panvel in Navi Mumbai. This 48 km fast-track corridor will reduce travel time by offering dedicated high-speed tracks, enabling quicker transit for commuters traveling between the city and Navi Mumbai. With more frequent and efficient trains, it aims to alleviate congestion on the existing routes, boost passenger capacity, and improve overall rail services. The corridor is part of the broader plan to modernize Mumbai’s suburban railway network and support regional economic growth and development.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/airport.jpg"
+            },
+            {
+                title: "NAINA (NAVI MUMBAI AIRPORT INFLUENCE NOTIFIED AREA)",
+                description: "NAINA (Navi Mumbai Airport Influence Notified Area) is a designated region around the upcoming Navi Mumbai International Airport, intended to facilitate planned urban development. Spanning approximately 250 square kilometers, NAINA encompasses areas in Navi Mumbai, Panvel, and surrounding regions. The project aims to create a well-planned urban ecosystem with residential, commercial, and industrial zones, offering modern infrastructure and connectivity. NAINAs development will promote economic growth, attract investments, and create thousands of job opportunities. With strategic planning and sustainable development, NAINA is expected to become a key growth hub, complementing the operations of the Navi Mumbai International Airport.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/naina.JPG"
+            },
+            {
+                title: "ATAL SETU",
+                description: "Atal Setu, also known as the Atal Bridge, is a vital infrastructure project located in Goa, India, connecting the islands of Goa’s River Mandovi. The bridge, named in honor of former Prime Minister Atal Bihari Vajpayee, is a modern cable-stayed structure designed to improve road connectivity and ease traffic flow in the region. It spans approximately 5.1 kilometers and serves as a crucial link between Panaji, the state capital, and the northern regions of Goa. The Atal Setu is expected to boost tourism, enhance regional development, and reduce congestion, providing a smoother transportation route for commuters.",
+                imagePath: "/assets/images/buyersGuide/panveldevelopment/atalsetu.jpg"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animate hero section
+            gsap.to("#hero", {
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            });
+
+            gsap.to("#mainTitle", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: 0.5,
+                ease: "power2.out"
+            });
+
+            // Generate and animate content blocks
+            const container = document.getElementById('contentContainer');
+
+            contentBlocks.forEach((block, index) => {
+                const blockElement = document.createElement('div');
+                blockElement.className = 'bg-white rounded-lg shadow-lg overflow-hidden mb-8 opacity-0';
+
+                const isEven = index % 2 === 0;
+                blockElement.innerHTML = `
+                    <div class="bg-blue-600 p-4">
+                        <h2 class="text-xl font-semibold text-white text-center">${block.title}</h2>
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        ${isEven ? `
+                            <div class="md:w-1/2 p-6">
+                                <p class="text-sm text-gray-700">${block.description}</p>
+                            </div>
+                            <div class="md:w-1/2">
+                                <img src="${block.imagePath}" alt="${block.title}" class="w-full h-full object-cover">
+                            </div>
+                        ` : `
+                            <div class="md:w-1/2">
+                                <img src="${block.imagePath}" alt="${block.title}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-6">
+                                <p class="text-sm text-gray-700">${block.description}</p>
+                            </div>
+                        `}
+                    </div>
+                `;
+
+                container.appendChild(blockElement);
+
+                // Animate each block on scroll
+                gsap.to(blockElement, {
+                    scrollTrigger: {
+                        trigger: blockElement,
+                        start: "top 80%",
+                        end: "top 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+
+        //////  Footer component
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+    </script>
+
+    <style>
+        /* Additional custom styles */
+        .opacity-0 {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</body>
+
+</html>

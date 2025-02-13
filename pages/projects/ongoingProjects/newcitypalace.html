@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-white-100 to-white min-h-screen">
+
+
+
+    <div class="w-full">
+
+
+        <!-- Navbar Container -->
+        <div id="navbar-container"></div>
+
+
+        <!-- Project Section -->
+        <section class="py-8 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-start max-w-7xl mx-auto">
+                <div class="lg:w-1/2 lg:pr-6 text-center lg:text-left">
+                    <h1 id="project-title" class="text-2xl md:text-3xl font-bold mb-4 text-black"></h1>
+                    <p id="project-description" class="mb-4 text-sm md:text-base text-black"></p>
+                    <p id="project-tagline" class="mb-4 text-sm md:text-lg font-semibold text-cyan-700"></p>
+                    <p id="project-rera" class="mb-4 text-sm md:text-base font-semibold text-black">Maha Rera
+                        Registration No: N/A</p>
+                </div>
+                <div class="lg:w-1/2 mt-4 lg:mt-0">
+                    <img id="project-image" src="" alt="Project Image" class="w-full h-auto object-cover rounded-lg" />
+                </div>
+            </div>
+            <div class="mt-4 flex justify-center lg:justify-start lg:mx-36 xl:mx-72">
+                <a id="project-pdf-link" href="#" target="_blank" rel="noopener noreferrer">
+                    <button
+                        class="bg-red-600 hover:bg-red-700 text-white font-bold text-sm sm:text-base py-2 px-3 sm:px-4 rounded transition duration-300 ease-in-out flex items-center justify-center">
+                        Download Brochure
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 ml-1 sm:ml-2"
+                            viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0-1.414 0l-3-3a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </a>
+            </div>
+        </section>
+
+        <!-- Amenities Section -->
+        <section id="amenities-section" class="hidden bg-gray-200">
+            <div class="bg-white-100 py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto md:text-center">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-xl mb-8 text-center text-cyan-700 md:my-6">
+                        <span class="bg-gray-200 px-2 text-cyan-700">Amenities</span>
+                    </h2>
+                    <div class="w-36 h-1 bg-gradient-to-r bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+                    <p id="amenities-description"
+                        class="mb-8 text-base md:text-lg text-gray-600 text-center max-w-2xl mx-auto"></p>
+                    <div id="amenities-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                        <!-- Amenities will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery-section" class="hidden bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-xl mb-8 text-center text-cyan-700 md:my-6">Gallery</h2>
+                <div class="w-36 h-1 bg-gradient-to-r bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+                <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 md:mt-16">
+                    <!-- Gallery images will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Highlights -->
+        <div class="bg-gray-200">
+            <div class="py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center text-cyan-700 md:my-6">
+                        Project Highlights
+                    </h2>
+                    <div class="w-36 h-1 bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+                    <div id="highlights-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Section -->
+        <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-xl mb-8 text-center text-cyan-700 md:my-6">
+                    Configuration</h2>
+                <div class="w-36 h-1 bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+                <div class="overflow-x-auto mb-12">
+                    <table class="w-full border-collapse bg-white shadow-md rounded-lg">
+                        <thead>
+                            <tr class="bg-gray-700 text-white text-center">
+                                <th class="py-3 px-4">Configuration</th>
+                                <th class="py-3 px-4">SBA / Carpet (sq.ft.)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="config-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Floor Plans Section -->
+        <section class="bg-gray-200 py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-xl mb-8 text-center text-cyan-700 md:my-6">Floor Plans
+                </h2>
+                <div class="w-36 h-1 bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+                <div id="floor-plans-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+
+        <!-- Location & Connectivity Section -->
+        <section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 text-center text-cyan-700">Location &
+                Connectivity</h2>
+            <div class="w-96 h-1 bg-orange-500 hover:bg-orange-600 mx-auto mb-8"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Left Column -->
+                <div class="space-y-10 md:mt-12" id="connectivity-left"></div>
+
+                <!-- middle Column -->
+                <div class="space-y-10 md:mt-12" id="connectivity-right"></div>
+
+                <!-- right Column (Google Map) -->
+                <div class="w-full h-[250px] md:h-[350px] rounded-lg overflow-hidden md:mt-0">
+                    <iframe id="google-map" width="100%" height="100%" style="border: 0;" allowfullscreen=""
+                        loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Container -->>
+        <div id="footer-container"></div>
+
+    </div>
+
+
+    <script>
+        // Project Data
+        const project = {
+            title: "NEW CITY PALACE, Pushapak Nagar, Panvel",
+            fullDescription: "Ensuring buildings are constructed with strong foundations and materials to withstand environmental stresses and provide long-term safety and stability. Designing buildings with efficient layouts and amenities that cater to the needs of occupants while maximizing space utilization and comfort. Incorporating architectural features and finishes that enhance the visual appeal and character of the building, contributing to its overall attractiveness and identity.",
+            tagLine: "BIG DREAMS HAVE SMALL BEGINNINGS INVEST SMALL. INVEST SMART",
+            reraNumber: "123456",
+            image: "/assets/images/projects/newCity.jpeg",
+            pdfLink: "#",
+            amenities: [
+                { name: "Gymnasium", image: "/assets/images/amenities/newcityPalace/gym.jpg" },
+                { name: "Indoor Games", image: "/assets/images/amenities/newcityPalace/indoorGames.jpg" },
+                { name: "Society Office", image: "/assets/images/amenities/newcityPalace/sosaetyOffice.jpg" },
+                { name: "Rooftop Yoga Deck", image: "/assets/images/amenities/newcityPalace/roofTopYogaDeck.jpg" },
+                { name: "Rooftop Gazebo", image: "/assets/images/amenities/newcityPalace/gazeboSeating.jpg" },
+                { name: "Rooftop Garden", image: "/assets/images/amenities/newcityPalace/gardenPlayArea.jpg" },
+                { name: "Childrens Play Area", image: "/assets/images/amenities/newcityPalace/childrenPlayArea.jpg" },
+                { name: "Senior Citizen Seating Area", image: "/assets/images/amenities/newcityPalace/seniorcitizenseating.jpg" },
+            ],
+            galleryImages: [
+                { image: "/assets/images/projects/ongoing/newcityPalace/left.jpg", alt: "Exterior View" },
+                { image: "/assets/images/projects/ongoing/newcityPalace/right.jpg", alt: "Living Room" },
+                { image: "/assets/images/projects/ongoing/newcityPalace/ISO.jpg", alt: "Kitchen" },
+                { image: "/assets/images/projects/ongoing/newcityPalace/nightRender1.jpg", alt: "Kitchen" },
+                { image: "/assets/images/projects/ongoing/newcityPalace/terraceRender.jpg", alt: "Kitchen" },
+            ],
+            highlights: [
+                { icon: "fa-city", description: "CIDCO Clear Title Plot" },
+                { icon: "fa-building", description: "Ground + 7 Storey Luxurious Tower" },
+                { icon: "fa-store", description: "Shops, 1 RK & 1 BHK Apartments" },
+                { icon: "fa-file-contract", description: "CIDCO Approved" },
+                { icon: "fa-check-circle", description: "Loan Available from Major Banks and Financial Institutions" }
+            ],
+            configuration: [
+                { flat: "1 RK", carpet: "296 SQ FT" },
+                { flat: "1 BHK", carpet: "354 SQ FT" },
+                { flat: "1 BHK", carpet: "385 SQ FT" },
+                { flat: "1 BHK", carpet: "426 SQ FT" }
+            ],
+            floorplans: [
+                { title: 'GROUND FLOOR FURNITURE PLAN', src: '/assets/images/floorplans/ongoing/newcityPalace/groundFloor.JPG' },
+                { title: '1ST FLOOR FURNITURE PLAN', src: '/assets/images/floorplans/ongoing/newcityPalace/firstFloor.JPG' },
+                { title: '2ND FLOOR FURNITURE PLAN', src: '/assets/images/floorplans/ongoing/newcityPalace/secondFloor.JPG' },
+                { title: '3RD TO 7TH FLOOR FURNITURE PLAN', src: '/assets/images/floorplans/ongoing/newcityPalace/thirdFloor.JPG' },
+            ],
+            connectivity: [
+                { icon: "fa-train", title: "Railway Station", description: "Khandeshwar Railway Station : 5 Mins" },
+                { icon: "fa-plane", title: "Navi Mumbai International Airport", description: "NAVI MUMBAI INTERNATIONAL AIRPORT : 2 Mins" },
+                { icon: "fa-laptop-code", title: "IT Park", description: "Reliance SEZ and IT Park : 0.5 Kms" },
+                { icon: "fa-subway", title: "Metro Station", description: "UPCOMING KALAMBOLI METRO STATION : 1.5 KMS" },
+                { icon: "fa-futbol", title: "Sports Academy", description: "Close to Karnala Sports Academy" },
+                { icon: "fa-school", title: "Schools and Colleges", description: "All Reputed Schools and Colleges within 5-10 Mins" }
+            ],
+
+            map: {
+                iframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d695.8197463799711!2d73.10259316005418!3d19.009816908187975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e911b8186ff7%3A0x8637ac85995699fd!2sCrown%20Housing!5e1!3m2!1sen!2sin!4v1721728374695!5m2!1sen!2sin"
+            }
+        };
+
+        // Populate Project Data
+        document.getElementById("project-title").textContent = project.title;
+        document.getElementById("project-description").textContent = project.fullDescription;
+        document.getElementById("project-tagline").textContent = project.tagLine;
+        document.getElementById("project-rera").textContent = `Maha Rera Registration No: ${project.reraNumber}`;
+        document.getElementById("project-image").src = project.image;
+        document.getElementById("project-pdf-link").href = project.pdfLink;
+
+        // Populate Amenities
+        if (project.amenities) {
+            const amenitiesSection = document.getElementById("amenities-section");
+            const amenitiesGrid = document.getElementById("amenities-grid");
+            amenitiesSection.classList.remove("hidden");
+
+            project.amenities.forEach((amenity) => {
+                const div = document.createElement("div");
+                div.className = "relative overflow-hidden rounded-lg shadow-md";
+                div.innerHTML = `
+          <img src="${amenity.image}" alt="${amenity.name}" class="w-full h-48 sm:h-56 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2">
+            <h3 class="text-lg font-xl">${amenity.name}</h3>
+          </div>
+        `;
+                amenitiesGrid.appendChild(div);
+            });
+        }
+
+        // Populate Gallery
+        if (project.galleryImages) {
+            const gallerySection = document.getElementById("gallery-section");
+            const galleryGrid = document.getElementById("gallery-grid");
+            gallerySection.classList.remove("hidden");
+
+            project.galleryImages.forEach((image) => {
+                const div = document.createElement("div");
+                div.className = "relative overflow-hidden aspect-square";
+                div.innerHTML = `
+          <img src="${image.image}" alt="${image.name}" class="object-cover transition duration-300 ease-in-out hover-scale" />
+        `;
+                galleryGrid.appendChild(div);
+            });
+        }
+
+        // Populate Project Highlights
+        const highlightsGrid = document.getElementById("highlights-grid");
+        project.highlights.forEach(item => {
+            const div = document.createElement("div");
+            div.className = "flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105";
+            div.innerHTML = `
+            <i class="fas ${item.icon} text-4xl mb-4 text-cyan-700"></i>
+            <p class="text-sm font-medium text-gray-900">${item.description}</p>
+        `;
+            highlightsGrid.appendChild(div);
+        });
+
+        // Populate Configuration Table
+        const configTableBody = document.getElementById("config-table-body");
+        project.configuration.forEach(config => {
+            const row = document.createElement("tr");
+            row.className = "border-b text-center";
+            row.innerHTML = `
+                <td class="py-3 px-4">${config.flat}</td>
+                <td class="py-3 px-4">${config.carpet}</td>
+            `;
+            configTableBody.appendChild(row);
+        });
+
+        // Populate Floor Plans Grid
+        const floorPlansGrid = document.getElementById("floor-plans-grid");
+        project.floorplans.forEach(plan => {
+            const div = document.createElement("div");
+            div.className = "bg-white p-4 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300";
+            div.innerHTML = `
+                <img src="${plan.src}" alt="${plan.title}" class="w-full h-64 object-cover rounded-md" />
+                <h3 class="text-lg font-medium mt-4 text-center">${plan.title}</h3>
+            `;
+            floorPlansGrid.appendChild(div);
+        });
+
+        // Splitting the connectivity data into two columns
+        const leftColumn = document.getElementById("connectivity-left");
+        const rightColumn = document.getElementById("connectivity-right");
+        const midpoint = Math.ceil(project.connectivity.length / 2);
+
+        project.connectivity.forEach((item, index) => {
+            const div = document.createElement("div");
+            div.className = "flex items-start space-x-4 transition-transform duration-300 hover:scale-105";
+
+            div.innerHTML = `
+                <i class="fas ${item.icon} text-cyan-700 text-2xl"></i>
+                <div>
+                    <h4 class="font-bold text-lg">${item.title}</h4>
+                    <p class="text-sm text-gray-700">${item.description}</p>
+                </div>
+            `;
+
+            if (index < midpoint) {
+                leftColumn.appendChild(div);
+            } else {
+                rightColumn.appendChild(div);
+            }
+        });
+
+        // Set Google Map iframe
+        document.getElementById("google-map").src = project.map.iframeSrc;
+
+
+        // Navbar
+        function loadComponent(elementId, path) {
+            fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
+                .catch(error => console.error('Error loading component:', error));
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            loadComponent('navbar-container', '/components/navbar.html');
+        });
+
+
+
+        //////  Footer component
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footer.html").then(response => response.text()).then(data => { document.getElementById("footer-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
+
+
+    </script>
+</body>
+
+</html>

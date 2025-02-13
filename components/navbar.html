@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+        }
+
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        }
+
+        .group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #14b8a6;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-slide {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="w-full relative bg-white shadow-md z-50">
+        <!-- Logo Section -->
+        <div class="absolute left-4 sm:left-1/4 transform sm:-translate-x-40 md:-translate-x-3/4 top-1">
+            <a href="/" class="block transition-transform duration-300 hover:scale-105">
+                <img src="/assets/images/newLogo.png" alt="Royal Crown Realty"
+                    class="h-28 w-29 sm:h-20 md:h-24 lg:h-32 transition-all duration-300">
+            </a>
+        </div>
+
+        <!-- Top Contact Bar -->
+        <div class="bg-cyan-700 py-2">
+            <div
+                class="container mx-auto px-6 sm:px-14 flex flex-col sm:flex-row justify-end items-center gap-2 sm:gap-12">
+                <!-- Contact Info -->
+                <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 mb-2 sm:mb-0">
+                    <a href="tel:+918689992777"
+                        class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition-colors duration-300">
+                        <i class="fas fa-phone-alt mr-2"></i> (+91) 8689992777
+                    </a>
+                    <a href="mailto:info@royalcrowninfra.com"
+                        class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition-colors duration-300">
+                        <i class="fas fa-envelope mr-2"></i> info@royalcrowninfra.com
+                    </a>
+                </div>
+
+                <!-- Social Media Icons -->
+                <div class="flex items-center space-x-4">
+                    <a href="#"
+                        class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.facebook.com/royalcrowninfra/"
+                        class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/royalcrown.19/"
+                        class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#"
+                        class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="sm:hidden absolute top-3 right-4 z-50">
+            <button id="mobile-menu-toggle" class="text-black hover:text-gray-600 transition-colors duration-300 p-2">
+                <span id="menu-icon" class="text-2xl transition-opacity duration-300">☰</span>
+                <span id="close-icon" class="hidden text-2xl transition-opacity duration-300">✖</span>
+            </button>
+        </div>
+
+        <!-- Desktop Navbar -->
+        <nav class="hidden sm:flex items-center justify-center py-6 sm:py-8 bg-white md:ml-72">
+            <ul class="flex items-center space-x-20">
+                <li>
+                    <a href="/"
+                        class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">Home</a>
+                </li>
+                <li class="relative group">
+                    <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+                        About <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                    <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+                        <li>
+                            <a href="/pages/about/ourTeam.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/about/aboutTheGroup.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                About The Group
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Add other menu items similarly -->
+                <li class="relative group">
+                    <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+                        Projects <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                    <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+                        <li>
+                            <a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Ongoing Projects
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Completed Projects
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Gallery -->
+                <li>
+                    <a href="/pages/gallery.html"
+                        class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">Gallery</a>
+                </li>
+                <!-- Add other menu items similarly -->
+                <li class="relative group">
+                    <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+                        Buyers Guide <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    </button>
+                    <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+                        <li>
+                            <a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Panvel Development
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Home Loans
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                GST
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Stamp duty and Reg
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                Legal and Tax Benefits 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                NRI Guide
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                PMAY
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                                EMI Calculator
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full mobile-menu-slide z-40 sm:hidden overflow-y-auto">
+            <ul class="p-4 pt-16 space-y-4">
+                <li>
+                    <a href="/"
+                        class="block text-gray-700 font-bold hover:text-teal-500 transition-colors duration-300">Home</a>
+                </li>
+                <li class="mobile-dropdown">
+                    <button
+                        class="w-full text-left text-gray-700 font-bold hover:text-teal-500 transition-colors duration-300 flex justify-between items-center">
+                        About
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <ul class="hidden mt-2 ml-4 space-y-2">
+                        <li>
+                            <a href="/pages/about/ourTeam.html"
+                                class="block py-2 text-gray-700 hover:text-teal-500 transition-colors duration-200">
+                                Our Team
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/about/aboutTheGroup.html"
+                                class="block py-2 text-gray-700 hover:text-teal-500 transition-colors duration-200">
+                                About The Group
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Add other mobile menu items similarly -->
+            </ul>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+
+            // Improved mobile menu toggle with animation
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+
+                mobileMenu.style.transform = isMenuOpen ? 'translateX(0)' : 'translateX(-100%)';
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+
+                // Prevent body scroll when menu is open
+                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+            }
+
+            mobileMenuToggle.addEventListener('click', toggleMenu);
+
+            // Mobile dropdowns with smooth animation
+            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+
+            mobileDropdowns.forEach(dropdown => {
+                const button = dropdown.querySelector('button');
+                const submenu = dropdown.querySelector('ul');
+                let isOpen = false;
+
+                button.addEventListener('click', () => {
+                    isOpen = !isOpen;
+
+                    // Rotate arrow
+                    const arrow = button.querySelector('i');
+                    arrow.style.transform = isOpen ? 'rotate(180deg)' : '';
+
+                    // Toggle submenu with smooth height animation
+                    if (isOpen) {
+                        submenu.classList.remove('hidden');
+                        submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                    } else {
+                        submenu.style.maxHeight = '0';
+                        setTimeout(() => {
+                            submenu.classList.add('hidden');
+                        }, 300);
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (event) => {
+                if (isMenuOpen && !mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                    toggleMenu();
+                }
+            });
+
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    if (window.innerWidth >= 640 && isMenuOpen) {
+                        toggleMenu();
+                    }
+                }, 250);
+            });
+        });
+    </script>
+</body>
+
+</html>

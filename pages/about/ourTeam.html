@@ -183,6 +183,7 @@
       // Load components
       loadComponent('navbar-container', '/components/navbar.html');
       loadComponent('footer-container', '/components/footer.html');
+      loadComponent('footerbar-container', '/components/footerbar.html');
     });
 
     function loadComponent(elementId, path) {
@@ -197,7 +198,7 @@
 
     ////////////////////////////////////////////////////////////////           FooterBar   /////////////////////////////////////////////////
     document.addEventListener("DOMContentLoaded", () => {
-      fetch("/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
+      fetch("/components/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
         .catch(error => console.error("Error loading footer:", error));
     });
   </script>

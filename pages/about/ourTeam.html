@@ -156,6 +156,14 @@
     </div>
   </section>
 
+
+
+  <!-- Footerbar Container-->
+  <div id="footerbar-container"></div>
+
+
+
+
   <!-- Footer Container -->
   <div id="footer-container"></div>
 
@@ -185,6 +193,13 @@
         })
         .catch(error => console.error('Error loading component:', error));
     }
+
+
+    ////////////////////////////////////////////////////////////////           FooterBar   /////////////////////////////////////////////////
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
+        .catch(error => console.error("Error loading footer:", error));
+    });
   </script>
 </body>
 

@@ -10,10 +10,9 @@
 </head>
 
 <style>
-       body {
-      font-family: 'Poppins', 'Inter', sans-serif;
+    body {
+        font-family: 'Poppins', 'Inter', sans-serif;
     }
-
 </style>
 
 <body>
@@ -146,7 +145,10 @@
             </div>
         </div>
 
-        <!-- Footer Container -->>
+        <!-- Footerbar Container-->
+        <div id="footerbar-container"></div>
+
+        <!-- Footer Container -->
         <div id="footer-container"></div>
 
         <script>
@@ -166,7 +168,11 @@
                 loadComponent('navbar-container', '/components/navbar.html');
             });
 
-
+            ////////////////////////////////////////////////////////////////           FooterBar   /////////////////////////////////////////////////
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch("/components/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
+                    .catch(error => console.error("Error loading footer:", error));
+            });
 
             //////  Footer component
             document.addEventListener("DOMContentLoaded", () => {

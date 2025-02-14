@@ -78,7 +78,10 @@
         </div>
     </div>
 
-    <!-- Footer Container -->>
+    <!-- Footerbar Container -->
+    <div id="footerbar-container"></div>
+
+    <!-- Footer Container -->
     <div id="footer-container"></div>
 
 
@@ -109,6 +112,11 @@
         });
 
 
+        ////////////////////////////////////////////////////////////////           FooterBar   /////////////////////////////////////////////////
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("/components/footerbar.html").then(response => response.text()).then(data => { document.getElementById("footerbar-container").innerHTML = data; })
+                .catch(error => console.error("Error loading footer:", error));
+        });
 
         //////  Footer component
         document.addEventListener("DOMContentLoaded", () => {

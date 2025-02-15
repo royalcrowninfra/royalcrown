@@ -32,7 +32,7 @@
 
         .overlay.active {
             opacity: 1;
-            visibility: visible;
+            visibility: visible;                                                                                                                                            
         }
 
         .dropdown-content {
@@ -290,7 +290,26 @@
                         </div>
                     </div>
 
-                    <!-- Services Dropdown -->
+                    <!-- Projects Dropdown -->
+                    <div class="dropdown">
+                        <button class="w-full flex justify-between items-center text-gray-800 hover:text-blue-600">
+                            <span>Projects</span>
+                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-content pl-4">
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Ongoing Projects</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Completed Projects</a>
+                        </div>
+                    </div>
+
+                    <!-- Gallery -->
+                    <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors">Gallery</a>
+
+                    <!-- Buyers Guide Dropdown -->
                     <div class="dropdown">
                         <button class="w-full flex justify-between items-center text-gray-800 hover:text-blue-600">
                             <span>Services</span>
@@ -301,8 +320,14 @@
                             </svg>
                         </button>
                         <div class="dropdown-content pl-4">
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Service 1</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Service 2</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">panvel Development</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">home Loans</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">GST</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Stamp duty and reg</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Legal and Tax Benefits</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">NRI Guide</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">PMAY</a>
+                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Emi Calculator</a>
                         </div>
                     </div>
 
@@ -315,11 +340,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('overlay');
-            const menuIcon = document.getElementById('menuIcon');
-            const closeIcon = document.getElementById('closeIcon');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
             const dropdowns = document.querySelectorAll('.dropdown');
 
             let isMenuOpen = false;
@@ -328,7 +352,6 @@
                 isMenuOpen = !isMenuOpen;
 
                 mobileMenu.classList.toggle('active');
-                overlay.classList.toggle('active');
                 menuIcon.classList.toggle('hidden');
                 closeIcon.classList.toggle('hidden');
 
@@ -337,19 +360,9 @@
             }
 
             // Menu button click handler
-            menuBtn.addEventListener('click', (e) => {
+            mobileMenuToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleMenu();
-            });
-
-            // Overlay click handler
-            overlay.addEventListener('click', toggleMenu);
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (isMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                    toggleMenu();
-                }
             });
 
             // Handle dropdowns

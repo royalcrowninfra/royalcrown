@@ -85,41 +85,93 @@
 
 
     /*    ongoing project css*/
-    @keyframes scroll {
+    @keyframes fadeInUp {
       from {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translateY(30px);
       }
 
       to {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    .scrolling-item {
+    .project-card {
       opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .project-card.active {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Add staggered delays for cards */
+    .project-card:nth-child(1).active {
+      animation-delay: 0s;
+    }
+
+    .project-card:nth-child(2).active {
+      animation-delay: 0.2s;
+    }
+
+    .project-card:nth-child(3).active {
+      animation-delay: 0.4s;
+    }
+
+    /* Smooth hover transitions */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button hover effect */
+    .read-more-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .read-more-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .read-more-btn:hover::after {
       transform: translateX(100%);
-      transition: transform 1s ease-out, opacity 1s ease-out;
     }
-
-    .scrolling-item.active {
-      transform: translateX(0);
-      opacity: 1;
-    }
-
 
 
     /*   Customer review */
     .review-card-custom {
       opacity: 0;
-      transform: translateX(100px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
 
     .review-card-custom.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .review-card-custom {
+        transform: translateX(100px);
+      }
+
+      .review-card-custom.visible {
+        transform: translateX(0);
+      }
     }
 
     .background-custom {
@@ -127,6 +179,12 @@
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
+    }
+
+    @media (max-width: 768px) {
+      .background-custom {
+        background-attachment: scroll;
+      }
     }
 
 
@@ -278,57 +336,118 @@
 
   <!--   ongoing project -->
   <div class="bg-gray-100">
-    <div class="max-w-7xl mx-auto py-20 px-4">
-      <h2 class="text-3xl font-bold text-center mb-6">Ongoing Projects</h2>
-      <div class="w-40 h-1 bg-red-500 mx-auto mb-3"></div>
-      <div class="w-16 h-1 bg-red-500 mx-auto mb-8"></div>
-      <div class="flex space-x-6 overflow-hidden">
-        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
-          <img src="/assets/images/projects/ongoing/saiPrasad.jpeg" alt="Sai Prasad Garden"
-            class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold">SAI PRASAD GARDEN, Nevali, Panvel</h3>
-            <ul class="mt-2 text-sm text-gray-600 space-y-1">
-              <li>&#8226; 1 & 2 BHK Apartments</li>
-              <li>&#8226; 13 Buildings, G+4 Storey</li>
-              <li>&#8226; Ready to Move In</li>
-              <li>&#8226; Luxurious Amenities</li>
+    <div class="max-w-7xl mx-auto py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-12 animate-item">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-6">Ongoing Projects</h2>
+        <div class="w-32 sm:w-40 h-1 bg-red-500 mx-auto mb-3"></div>
+        <div class="w-12 sm:w-16 h-1 bg-red-500 mx-auto"></div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Sai Prasad Garden -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border border-red-300">
+          <div class="relative overflow-hidden group">
+            <img src="/assets/images/projects/ongoing/saiPrasad.jpeg" alt="Sai Prasad Garden"
+              class="w-full h-48 sm:h-56 object-cover transform transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg font-bold mb-3">SAI PRASAD GARDEN, Nevali, Panvel</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                1 & 2 BHK Apartments
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                13 Buildings, G+4 Storey
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Ready to Move In
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Luxurious Amenities
+              </li>
             </ul>
-            <a href="/pages/projects/ongoingProjects/saiPrasadGarden.html"><button
-                class="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
-                More</button></a>
+            <a href="/pages/projects/ongoingProjects/saiPrasadGarden.html">
+              <button
+                class="read-more-btn mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-all duration-300">
+                Read More
+              </button>
+            </a>
           </div>
         </div>
-        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
-          <img src="/assets/images/projects/ongoing/jayramResidency.jpg" alt="Jayram Residency"
-            class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold">JAYRAM RESIDENCY, Shedung, Panvel</h3>
-            <ul class="mt-2 text-sm text-gray-600 space-y-1">
-              <li>&#8226; 1 & 2 BHK Apartments</li>
-              <li>&#8226; 4 Buildings, 10 Wings, G+7 Storey</li>
-              <li>&#8226; Possession: March 2026</li>
-              <li>&#8226; Luxurious Amenities</li>
+
+        <!-- Jayram Residency -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border border-red-300">
+          <div class="relative overflow-hidden group">
+            <img src="/assets/images/projects/ongoing/jayramResidency.jpg" alt="Jayram Residency"
+              class="w-full h-48 sm:h-56 object-cover transform transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg font-bold mb-3">JAYRAM RESIDENCY, Shedung, Panvel</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                1 & 2 BHK Apartments
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                4 Buildings, 10 Wings, G+7 Storey
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Possession: March 2026
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Luxurious Amenities
+              </li>
             </ul>
-            <a href="/pages/projects/ongoingProjects/jayramresidency.html"><button
-                class="mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
-                More</button></a>
+            <a href="/pages/projects/ongoingProjects/jayramresidency.html">
+              <button
+                class="read-more-btn mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-all duration-300">
+                Read More
+              </button>
+            </a>
           </div>
         </div>
-        <div class="scrolling-item bg-white rounded-xl shadow-lg overflow-hidden border border-red-300 min-w-[350px]">
-          <img src="/assets/images/projects/ongoing/newCity.jpeg" alt="New City Palace"
-            class="w-full h-56 object-cover">
-          <div class="p-6">
-            <h3 class="text-lg font-bold">NEW CITY PALACE, Pushpak Nagar, Panvel</h3>
-            <ul class="mt-2 text-sm text-gray-600 space-y-1">
-              <li>&#8226; 1RK, 1BHK Apartments</li>
-              <li>&#8226; G+7 Storey</li>
-              <li>&#8226; Possession: Dec 2025</li>
-              <li>&#8226; Rooftop Amenities</li>
+
+        <!-- New City Palace -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden border border-red-300">
+          <div class="relative overflow-hidden group">
+            <img src="/assets/images/projects/ongoing/newCity.jpeg" alt="New City Palace"
+              class="w-full h-48 sm:h-56 object-cover transform transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg font-bold mb-3">NEW CITY PALACE, Pushpak Nagar, Panvel</h3>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                1RK, 1BHK Apartments
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                G+7 Storey
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Possession: Dec 2025
+              </li>
+              <li class="flex items-start">
+                <span class="text-red-500 mr-2">•</span>
+                Rooftop Amenities
+              </li>
             </ul>
-            <a href="/pages/projects/ongoingProjects/newcitypalace.html"><button
-                class="mt-8 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition">Read
-                More</button></a>
+            <a href="/pages/projects/ongoingProjects/newcitypalace.html">
+              <button
+                class="read-more-btn mt-4 w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-all duration-300">
+                Read More
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -339,51 +458,59 @@
 
   <!--   customer review   -->
 
-  <div class="bg-gray-100 background-custom md:py-32">
-    <div class="max-w-7xl mx-auto py-12 px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-900">Customer Reviews</h2>
-      <p class="text-lg text-gray-600 mt-2">Learn how to grow your business with our expert advice</p>
-      <div class="mt-8 border-t border-gray-300"></div>
-      <div class="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+  <div class="bg-gray-100 background-custom min-h-screen">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 md:py-16 lg:py-32">
+      <div class="text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Customer Reviews</h2>
+        <p class="text-base sm:text-lg text-gray-600 mt-2">Learn how to grow your business with our expert advice</p>
+        <div class="mt-6 sm:mt-8 border-t border-gray-300"></div>
+      </div>
+
+      <div class="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <!-- Review Card 1 -->
+        <div class="bg-white bg-opacity-90 p-4 sm:p-6 rounded-lg shadow-md review-card-custom">
           <div class="flex items-center gap-1">
             <span class="text-yellow-500 text-lg">★★★★★</span>
           </div>
           <h3 class="text-lg font-semibold mt-3">Royal Crown Team - A Seamless Real Estate Experience</h3>
           <p class="text-sm text-gray-600 mt-2">They worked diligently to offer us the best possible deal and explained
             every detail with politeness and thoroughness.</p>
-          <div class="flex items-center mt-4 md:mt-20">
-            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Ajinkya Salavkar">
+          <div class="flex items-center mt-4 md:mt-16">
+            <img src="/api/placeholder/40/40" class="h-10 w-10 rounded-full" alt="Ajinkya Salavkar">
             <div class="ml-3">
               <p class="font-semibold">Ajinkya Salavkar</p>
               <p class="text-sm text-gray-500">Customer</p>
             </div>
           </div>
         </div>
-        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+
+        <!-- Review Card 2 -->
+        <div class="bg-white bg-opacity-90 p-4 sm:p-6 rounded-lg shadow-md review-card-custom">
           <div class="flex items-center gap-1">
             <span class="text-yellow-500 text-lg">★★★★★</span>
           </div>
           <h3 class="text-lg font-semibold mt-3">Excellent Support!</h3>
           <p class="text-sm text-gray-600 mt-2">Royal Crown Property Developers exceeded my expectations with their
             exceptional service and attention to detail.</p>
-          <div class="flex items-center mt-4 md:mt-28">
-            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Sudhir Patil">
+          <div class="flex items-center mt-4 md:mt-16">
+            <img src="/api/placeholder/40/40" class="h-10 w-10 rounded-full" alt="Sudhir Patil">
             <div class="ml-3">
               <p class="font-semibold">Sudhir Patil</p>
               <p class="text-sm text-gray-500">Customer</p>
             </div>
           </div>
         </div>
-        <div class="bg-gray-300 p-6 rounded-lg shadow-md review-card-custom">
+
+        <!-- Review Card 3 -->
+        <div class="bg-white bg-opacity-90 p-4 sm:p-6 rounded-lg shadow-md review-card-custom">
           <div class="flex items-center gap-1">
             <span class="text-yellow-500 text-lg">★★★★★</span>
           </div>
           <h3 class="text-lg font-semibold mt-3">Great Experience!</h3>
           <p class="text-sm text-gray-600 mt-2">Overall, a fantastic experience. The team was professional and delivered
             exactly what was promised.</p>
-          <div class="flex items-center mt-4 md:mt-28">
-            <img src="/assets/images/header/reviews.jpg" class="h-10 w-10 rounded-full" alt="Emily Davis">
+          <div class="flex items-center mt-4 md:mt-16">
+            <img src="/api/placeholder/40/40" class="h-10 w-10 rounded-full" alt="Emily Davis">
             <div class="ml-3">
               <p class="font-semibold">Emily Davis</p>
               <p class="text-sm text-gray-500">Customer</p>
@@ -542,35 +669,53 @@
 
 
   document.addEventListener("DOMContentLoaded", function () {
-    const items = document.querySelectorAll(".scrolling-item");
-    function handleScroll() {
-      items.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          item.classList.add("active");
+    const cards = document.querySelectorAll('.project-card');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          // Optional: Unobserve after animation
+          // observer.unobserve(entry.target);
         }
       });
-    }
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-  });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    });
 
+    cards.forEach(card => observer.observe(card));
+  });
 
 
 
   ///////////////////////////////////////////////////////////////////////////////////////  customer review /////////////////////////////////
   document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".review-card-custom");
+
+    // Add initial delay to each card
+    cards.forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.2}s`;
+    });
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
+          // Remove delay after animation is complete
+          setTimeout(() => {
+            entry.target.style.transitionDelay = "0s";
+          }, 1000);
         }
       });
-    }, { threshold: 0.3 });
+    }, {
+      threshold: 0.2,
+      rootMargin: '50px'
+    });
+
     cards.forEach(card => observer.observe(card));
   });
-
 
   /////////////////////////////////////////////////////////////////////////////   Banking review ///////////////////////////////////
 

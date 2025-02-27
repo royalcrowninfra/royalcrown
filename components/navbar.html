@@ -32,7 +32,7 @@
 
         .overlay.active {
             opacity: 1;
-            visibility: visible;                                                                                                                                            
+            visibility: visible;
         }
 
         .dropdown-content {
@@ -90,7 +90,7 @@
 </head>
 
 <body>
-    <header class="w-full relative bg-white shadow-md z-50">
+    <header class="w-full relative bg-white shadow-md z-10">
         <!-- Logo Section -->
         <div class="absolute left-4 sm:left-1/4 transform sm:-translate-x-40 md:-translate-x-3/4 top-1">
             <a href="/" class="block transition-transform duration-300 hover:scale-105">
@@ -138,7 +138,7 @@
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <div class="sm:hidden absolute top-3 right-4 z-50">
+        <div class="sm:hidden absolute top-16 right-4 z-50">
             <button id="mobile-menu-toggle" class="text-black hover:text-gray-600 transition-colors duration-300 p-2">
                 <span id="menu-icon" class="text-2xl transition-opacity duration-300">☰</span>
                 <span id="close-icon" class="hidden text-2xl transition-opacity duration-300">✖</span>
@@ -264,121 +264,144 @@
             </ul>
         </nav>
 
-
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-50 lg:hidden overflow-y-auto">
-            <div class="p-6 space-y-4">
+        <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-10 shadow-lg">
+            <div class="p-6 space-y-4 mt-16">
                 <nav class="space-y-4">
                     <!-- Home -->
-                    <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="/" class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Home</a>
 
                     <!-- About Dropdown -->
-                    <div class="dropdown">
-                        <button class="w-full flex justify-between items-center text-gray-800 hover:text-blue-600">
+                    <div class="mobile-dropdown">
+                        <button
+                            class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
                             <span>About</span>
-                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                         <div class="dropdown-content pl-4">
-                            <a href="/pages/about/ourTeam.html" class="block py-2 text-gray-600 hover:text-blue-600">Our
+                            <a href="/pages/about/ourTeam.html" class="block py-2 text-gray-600 hover:text-teal-500">Our
                                 Team</a>
                             <a href="/pages/about/aboutTheGroup.html"
-                                class="block py-2 text-gray-600 hover:text-blue-600">About the Group</a>
+                                class="block py-2 text-gray-600 hover:text-teal-500">About the Group</a>
                         </div>
                     </div>
 
                     <!-- Projects Dropdown -->
-                    <div class="dropdown">
-                        <button class="w-full flex justify-between items-center text-gray-800 hover:text-blue-600">
+                    <div class="mobile-dropdown">
+                        <button
+                            class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
                             <span>Projects</span>
-                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                         <div class="dropdown-content pl-4">
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Ongoing Projects</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Completed Projects</a>
+                            <a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Ongoing Projects</a>
+                            <a href="/pages/projects/completedProjects/completedProject.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Completed Projects</a>
                         </div>
                     </div>
 
                     <!-- Gallery -->
-                    <a href="/" class="block text-gray-800 hover:text-blue-600 transition-colors">Gallery</a>
+                    <a href="/pages/gallery.html"
+                        class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Gallery</a>
 
                     <!-- Buyers Guide Dropdown -->
-                    <div class="dropdown">
-                        <button class="w-full flex justify-between items-center text-gray-800 hover:text-blue-600">
-                            <span>Services</span>
-                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                    <div class="mobile-dropdown">
+                        <button
+                            class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
+                            <span>Buyers Guide</span>
+                            <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                         <div class="dropdown-content pl-4">
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">panvel Development</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">home Loans</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">GST</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Stamp duty and reg</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Legal and Tax Benefits</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">NRI Guide</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">PMAY</a>
-                            <a href="#" class="block py-2 text-gray-600 hover:text-blue-600">Emi Calculator</a>
+                            <a href="/pages/buyres-guide/panvelDevelopment.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Panvel Development</a>
+                            <a href="/pages/buyres-guide/homeLoans.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Home Loans</a>
+                            <a href="/pages/buyres-guide/gst.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">GST</a>
+                            <a href="/pages/buyres-guide/stamp.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Stamp duty and Reg</a>
+                            <a href="/pages/buyres-guide/legal.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">Legal and Tax Benefits</a>
+                            <a href="/pages/buyres-guide/nri.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">NRI Guide</a>
+                            <a href="/pages/buyres-guide/pmay.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">PMAY</a>
+                            <a href="/pages/buyres-guide/calculator.html"
+                                class="block py-2 text-gray-600 hover:text-teal-500">EMI Calculator</a>
                         </div>
                     </div>
 
                     <!-- Contact -->
-                    <a href="#" class="block text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
+                    <a href="/pages/contact.html"
+                        class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Contact</a>
                 </nav>
             </div>
         </div>
+
+        <!-- Overlay for mobile menu -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
     </header>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Get elements
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileMenu = document.getElementById('mobileMenu');
             const menuIcon = document.getElementById('menu-icon');
             const closeIcon = document.getElementById('close-icon');
-            const dropdowns = document.querySelectorAll('.dropdown');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
 
-            let isMenuOpen = false;
-
-            function toggleMenu() {
-                isMenuOpen = !isMenuOpen;
-
+            // Mobile menu toggle function
+            function toggleMobileMenu() {
                 mobileMenu.classList.toggle('active');
                 menuIcon.classList.toggle('hidden');
                 closeIcon.classList.toggle('hidden');
+                mobileMenuOverlay.classList.toggle('hidden');
 
                 // Toggle body scroll
-                document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
             }
 
-            // Menu button click handler
-            mobileMenuToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleMenu();
+            // Mobile menu toggle click event
+            mobileMenuToggle.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default action
+                toggleMobileMenu();
             });
 
-            // Handle dropdowns
-            dropdowns.forEach(dropdown => {
-                const button = dropdown.querySelector('button');
+            // Close menu when clicking overlay
+            mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+            // Handle mobile dropdowns
+            mobileDropdowns.forEach(dropdown => {
+                const toggleButton = dropdown.querySelector('.mobile-dropdown-toggle');
                 const content = dropdown.querySelector('.dropdown-content');
-                const icon = button.querySelector('svg');
+                const icon = dropdown.querySelector('.dropdown-icon');
 
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-
-                    // Close other dropdowns
-                    dropdowns.forEach(otherDropdown => {
+                toggleButton.addEventListener('click', () => {
+                    // Close other dropdowns first
+                    mobileDropdowns.forEach(otherDropdown => {
                         if (otherDropdown !== dropdown) {
                             const otherContent = otherDropdown.querySelector('.dropdown-content');
-                            const otherIcon = otherDropdown.querySelector('svg');
+                            const otherIcon = otherDropdown.querySelector('.dropdown-icon');
+
                             otherContent.classList.remove('active');
                             otherIcon.classList.remove('rotate-icon');
                         }
@@ -390,15 +413,17 @@
                 });
             });
 
-            // Handle window resize
-            let resizeTimer;
+            // Close mobile menu on window resize if window becomes large
             window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    if (window.innerWidth >= 1024 && isMenuOpen) {
-                        toggleMenu();
+                if (window.innerWidth >= 640) {
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        menuIcon.classList.remove('hidden');
+                        closeIcon.classList.add('hidden');
+                        mobileMenuOverlay.classList.add('hidden');
+                        document.body.style.overflow = '';
                     }
-                }, 250);
+                }
             });
         });
     </script>

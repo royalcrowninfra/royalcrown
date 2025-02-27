@@ -24,6 +24,87 @@
       font-family: 'Poppins', 'Inter', sans-serif;
     }
 
+    /* navbar */
+    body {
+      font-family: 'Poppins', 'Inter', sans-serif;
+    }
+
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .dropdown-content.active {
+      max-height: 500px;
+      transition: max-height 0.5s ease-in;
+    }
+
+    .rotate-icon {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+
+    .group:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #14b8a6;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-slide {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+
+
+
     /*    Image corousel Css*/
     .fade-enter {
       opacity: 0;
@@ -251,8 +332,264 @@
 
 <body>
 
-  <!-- Navbar Container -->
-  <div id="navbar-container"></div>
+  <header class="w-full relative bg-white shadow-md z-50">
+    <!-- Logo Section -->
+    <div class="absolute left-4 sm:left-1/4 transform sm:-translate-x-40 md:-translate-x-3/4 top-1">
+      <a href="/" class="block transition-transform duration-300 hover:scale-105">
+        <img src="/assets/images/header/newLogo.png" alt="Royal Crown Realty"
+          class="h-28 w-29 sm:h-20 md:h-24 lg:h-32 transition-all duration-300">
+      </a>
+    </div>
+
+    <!-- Top Contact Bar -->
+    <div class="bg-cyan-700 py-2">
+      <div class="container mx-auto px-6 sm:px-14 flex flex-col sm:flex-row justify-end items-center gap-2 sm:gap-12">
+        <!-- Contact Info -->
+        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 mb-2 sm:mb-0">
+          <a href="tel:+918689992777"
+            class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition-colors duration-300">
+            <i class="fas fa-phone-alt mr-2"></i> (+91) 8689992777
+          </a>
+          <a href="mailto:info@royalcrowninfra.com"
+            class="sm:text-sm flex items-center text-white text-lg hover:text-orange-500 transition-colors duration-300">
+            <i class="fas fa-envelope mr-2"></i> info@royalcrowninfra.com
+          </a>
+        </div>
+
+        <!-- Social Media Icons -->
+        <div class="flex items-center space-x-4">
+          <a href="#"
+            class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.facebook.com/royalcrowninfra/"
+            class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/royalcrown.19/"
+            class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#"
+            class="text-white text-lg hover:text-orange-500 transition-colors duration-300 transform hover:scale-110">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <div class="sm:hidden absolute top-16 right-4 z-50">
+      <button id="mobile-menu-toggle" class="text-black hover:text-gray-600 transition-colors duration-300 p-2">
+        <span id="menu-icon" class="text-2xl transition-opacity duration-300">☰</span>
+        <span id="close-icon" class="hidden text-2xl transition-opacity duration-300">✖</span>
+      </button>
+    </div>
+
+    <!-- Desktop Navbar -->
+    <nav class="hidden sm:flex items-center justify-center py-6 sm:py-8 bg-white md:ml-72">
+      <ul class="flex items-center space-x-20">
+        <li>
+          <a href="/"
+            class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">Home</a>
+        </li>
+        <li class="relative group">
+          <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+            About <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+          <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+            <li>
+              <a href="/pages/about/ourTeam.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Our Team
+              </a>
+            </li>
+            <li>
+              <a href="/pages/about/aboutTheGroup.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                About The Group
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- Add other menu items similarly -->
+        <li class="relative group">
+          <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+            Projects <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+          <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+            <li>
+              <a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Ongoing Projects
+              </a>
+            </li>
+            <li>
+              <a href="/pages/projects/completedProjects/completedProject.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Completed Projects
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        <!-- Gallery -->
+        <li>
+          <a href="/pages/gallery.html"
+            class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">Gallery</a>
+        </li>
+
+
+        <!-- Buyers Guide -->
+        <li class="relative group">
+          <button class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">
+            Buyers Guide <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          </button>
+          <ul class="dropdown-menu absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+            <li>
+              <a href="/pages/buyres-guide/panvelDevelopment.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Panvel Development
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/homeLoans.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Home Loans
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/gst.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                GST
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/stamp.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Stamp duty and Reg
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/legal.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                Legal and Tax Benefits
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/nri.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                NRI Guide
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/pmay.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                PMAY
+              </a>
+            </li>
+            <li>
+              <a href="/pages/buyres-guide/calculator.html"
+                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-teal-500 transition-colors duration-200">
+                EMI Calculator
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- Contact us -->
+        <li>
+          <a href="/pages/contact.html"
+            class="nav-link text-gray-700 hover:text-teal-500 font-bold transition-colors duration-300">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-10 shadow-lg">
+      <div class="p-6 space-y-4 mt-16">
+        <nav class="space-y-4">
+          <!-- Home -->
+          <a href="/" class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Home</a>
+
+          <!-- About Dropdown -->
+          <div class="mobile-dropdown">
+            <button
+              class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
+              <span>About</span>
+              <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="dropdown-content pl-4">
+              <a href="/pages/about/ourTeam.html" class="block py-2 text-gray-600 hover:text-teal-500">Our
+                Team</a>
+              <a href="/pages/about/aboutTheGroup.html" class="block py-2 text-gray-600 hover:text-teal-500">About the
+                Group</a>
+            </div>
+          </div>
+
+          <!-- Projects Dropdown -->
+          <div class="mobile-dropdown">
+            <button
+              class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
+              <span>Projects</span>
+              <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="dropdown-content pl-4">
+              <a href="/pages/projects/ongoingProjects/ongoingProject.html"
+                class="block py-2 text-gray-600 hover:text-teal-500">Ongoing Projects</a>
+              <a href="/pages/projects/completedProjects/completedProject.html"
+                class="block py-2 text-gray-600 hover:text-teal-500">Completed Projects</a>
+            </div>
+          </div>
+
+          <!-- Gallery -->
+          <a href="/pages/gallery.html"
+            class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Gallery</a>
+
+          <!-- Buyers Guide Dropdown -->
+          <div class="mobile-dropdown">
+            <button
+              class="mobile-dropdown-toggle w-full flex justify-between items-center text-gray-800 hover:text-teal-500 font-medium">
+              <span>Buyers Guide</span>
+              <svg class="w-4 h-4 dropdown-icon transition-transform" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="dropdown-content pl-4">
+              <a href="/pages/buyres-guide/panvelDevelopment.html"
+                class="block py-2 text-gray-600 hover:text-teal-500">Panvel Development</a>
+              <a href="/pages/buyres-guide/homeLoans.html" class="block py-2 text-gray-600 hover:text-teal-500">Home
+                Loans</a>
+              <a href="/pages/buyres-guide/gst.html" class="block py-2 text-gray-600 hover:text-teal-500">GST</a>
+              <a href="/pages/buyres-guide/stamp.html" class="block py-2 text-gray-600 hover:text-teal-500">Stamp duty
+                and Reg</a>
+              <a href="/pages/buyres-guide/legal.html" class="block py-2 text-gray-600 hover:text-teal-500">Legal and
+                Tax Benefits</a>
+              <a href="/pages/buyres-guide/nri.html" class="block py-2 text-gray-600 hover:text-teal-500">NRI Guide</a>
+              <a href="/pages/buyres-guide/pmay.html" class="block py-2 text-gray-600 hover:text-teal-500">PMAY</a>
+              <a href="/pages/buyres-guide/calculator.html" class="block py-2 text-gray-600 hover:text-teal-500">EMI
+                Calculator</a>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <a href="/pages/contact.html"
+            class="block text-gray-800 hover:text-teal-500 transition-colors font-medium">Contact</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-opacity-50 z-40 hidden"></div>
+  </header>
+
 
 
   <!--   Hero Section Image Corousel  -->
@@ -561,14 +898,76 @@
 
 
   //////////////////////////////////////////////////////////////////////  Navabar component
-  function loadComponent(elementId, path) {
-    fetch(path).then(response => response.text()).then(data => { document.getElementById(elementId).innerHTML = data; })
-      .catch(error => console.error('Error loading component:', error));
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    loadComponent('navbar-container', '/components/navbar.html');
-  });
+  document.addEventListener('DOMContentLoaded', () => {
+    // Get elements
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
 
+    // Mobile menu toggle function
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('active');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      mobileMenuOverlay.classList.toggle('hidden');
+
+      // Toggle body scroll
+      if (mobileMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Mobile menu toggle click event
+    mobileMenuToggle.addEventListener('click', function (event) {
+      event.preventDefault(); // Prevent default action
+      toggleMobileMenu();
+    });
+
+    // Close menu when clicking overlay
+    mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+    // Handle mobile dropdowns
+    mobileDropdowns.forEach(dropdown => {
+      const toggleButton = dropdown.querySelector('.mobile-dropdown-toggle');
+      const content = dropdown.querySelector('.dropdown-content');
+      const icon = dropdown.querySelector('.dropdown-icon');
+
+      toggleButton.addEventListener('click', () => {
+        // Close other dropdowns first
+        mobileDropdowns.forEach(otherDropdown => {
+          if (otherDropdown !== dropdown) {
+            const otherContent = otherDropdown.querySelector('.dropdown-content');
+            const otherIcon = otherDropdown.querySelector('.dropdown-icon');
+
+            otherContent.classList.remove('active');
+            otherIcon.classList.remove('rotate-icon');
+          }
+        });
+
+        // Toggle current dropdown
+        content.classList.toggle('active');
+        icon.classList.toggle('rotate-icon');
+      });
+    });
+
+    // Close mobile menu on window resize if window becomes large
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 640) {
+        if (mobileMenu.classList.contains('active')) {
+          mobileMenu.classList.remove('active');
+          menuIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          mobileMenuOverlay.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+  });
 
 
 

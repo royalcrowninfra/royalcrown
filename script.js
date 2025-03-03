@@ -4,7 +4,7 @@
 //       <header class="w-full relative bg-white shadow-md">
 //         <div class="absolute left-4 sm:left-1/4 transform sm:-translate-x-40 md:-translate-x-3/4 top-0 z-10">
 //           <a href="/">
-//             <img src="assets/images/header/logo.png" alt="Royal Crown Realty" class="h-28 w-29 sm:h-20 md:h-24 lg:h-32 transition-all duration-300">
+//             <img src="public/images/header/logo.png" alt="Royal Crown Realty" class="h-28 w-29 sm:h-20 md:h-24 lg:h-32 transition-all duration-300">
 //           </a>
 //         </div>
 //         <div class="bg-cyan-700 py-2">
@@ -159,9 +159,9 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  hero section /////////////////////
 const images = [
-  { src: 'assets/images/homepage/bann-one.png', text: 'Unlocking Doors, Finding Homes' },
-  { src: 'assets/images/homepage/bann-two.png', text: 'Your Dream Home Awaits' },
-  { src: 'assets/images/homepage/bann-three.png', text: 'Building Futures, One Home at a Time' }
+  { src: 'public/images/homepage/bann-one.png', text: 'Unlocking Doors, Finding Homes' },
+  { src: 'public/images/homepage/bann-two.png', text: 'Your Dream Home Awaits' },
+  { src: 'public/images/homepage/bann-three.png', text: 'Building Futures, One Home at a Time' }
 ];
 
 const statistics = [
@@ -268,11 +268,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const services = [
-    { name: "Search & Shortlisting", icon: "assets/search-icon.png" },
-    { name: "Site Visit", icon: "assets/site-visit-icon.png" },
-    { name: "Home Loan Assistance", icon: "assets/home-loan-icon.png" },
-    { name: "Legal Advice", icon: "assets/legal-advice-icon.png" },
-    { name: "Unit Booking", icon: "assets/unit-booking-icon.png" }
+    { name: "Search & Shortlisting", icon: "public/search-icon.png" },
+    { name: "Site Visit", icon: "public/site-visit-icon.png" },
+    { name: "Home Loan Assistance", icon: "public/home-loan-icon.png" },
+    { name: "Legal Advice", icon: "public/legal-advice-icon.png" },
+    { name: "Unit Booking", icon: "public/unit-booking-icon.png" }
   ];
 
   const container = document.querySelector(".grid");
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //     {
 //       id: 1,
 //       name: 'SAI PRASAD GARDEN, Nevali, Panvel',
-//       image: 'assets/images/projects/saiPrasad.jpeg',
+//       image: 'public/images/projects/saiPrasad.jpeg',
 //       details: [
 //         '1 & 2 BHK Apartments',
 //         '13 Buildings, G+4 Storey',
@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //     {
 //       id: 2,
 //       name: 'JAYRAM RESIDENCY, Shedung, Panvel',
-//       image: 'assets/images/projects/jayramResidency.jpg',
+//       image: 'public/images/projects/jayramResidency.jpg',
 //       details: [
 //         '1 & 2 BHK Apartments',
 //         '4 Buildings, 10 Wings, G+7 Storey',
@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //     {
 //       id: 3,
 //       name: 'NEW CITY PALACE, Pushpak Nagar, Panvel',
-//       image: 'assets/images/projects/newCity.jpeg',
+//       image: 'public/images/projects/newCity.jpeg',
 //       details: [
 //         '1RK, 1BHK Apartments',
 //         'G+7 Storey',
@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //                       <img src="${project.image}" 
 //                            alt="${project.name}" 
 //                            class="w-full h-full object-cover"
-//                            onerror="this.src='assets/images/placeholder.jpg'">
+//                            onerror="this.src='public/images/placeholder.jpg'">
 //                   </div>
 //                   <div class="p-6">
 //                       <h3 class="text-xl font-bold mb-4 text-gray-800">${project.name}</h3>
